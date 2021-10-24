@@ -1,5 +1,5 @@
 function SWEP:Attach(addr, att, silent)
-    if !self:CanAttach(addr, att) then return end
+    if !self:CanAttach(addr, att) then return false end
 
     local slottbl = self:LocateSlotFromAddress(addr)
 
@@ -11,10 +11,12 @@ function SWEP:Attach(addr, att, silent)
         self:SetupModel(false)
         self:InvalidateCache()
     end
+
+    return true
 end
 
 function SWEP:Detach(addr, silent)
-    if !self:CanDetach(addr) then return end
+    if !self:CanDetach(addr) then return false end
 
     local slottbl = self:LocateSlotFromAddress(addr)
 
@@ -26,6 +28,8 @@ function SWEP:Detach(addr, silent)
         self:SetupModel(false)
         self:InvalidateCache()
     end
+
+    return true
 end
 
 function SWEP:ToggleCustomize(on)

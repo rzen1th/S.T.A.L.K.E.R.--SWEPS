@@ -16,3 +16,12 @@ ATT.HoloSight = true
 ATT.HoloSightReticle = Material("hud/holosight/go_barska.png", "mips smooth")
 ATT.HoloSightSize = 32
 ATT.HoloSightColor = Color(255, 0, 0)
+
+ATT.Attachments = {
+    {
+        PrintName = "Sight",
+        Category = "optic_picatinny",
+        Pos = Vector(4, 0, 0),
+        Ang = Angle(0, 0, 0),
+    }
+}

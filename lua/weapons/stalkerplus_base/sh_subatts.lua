@@ -7,6 +7,8 @@ end
 function SWEP:BuildAttachmentAddresses()
     self.AttachmentAddresses = {}
 
+    PrintTable(self:GetSubSlotList())
+
     for c, i in pairs(self:GetSubSlotList()) do
         i.Address = c
 
@@ -15,6 +17,7 @@ function SWEP:BuildAttachmentAddresses()
 end
 
 function SWEP:AttTreeToList(tree)
+    if !istable(tree) then return {} end
     local atts = {}
 
     atts = {tree}
@@ -50,7 +53,7 @@ function SWEP:GetAttachmentList()
     return atts
 end
 
-function SWEP:BuildSubAttachmentTree(tbl)
+function SWEP:BuildSubAttachmentTree(tbl, parenttbl)
     if !tbl.Installed then return {} end
 
     local atttbl = STALKERPLUS.GetAttTable(tbl.Installed)
@@ -60,9 +63,16 @@ function SWEP:BuildSubAttachmentTree(tbl)
     if atttbl then
         if atttbl.Attachments then
             subatts = table.Copy(atttbl.Attachments)
+
             for i, k in ipairs(tbl.SubAttachments) do
-                subatts[i].Installed = tbl[i].Installed
-                subatts[i].SubAttachments = self:BuildSubAttachmentTree(k)
+                subatts[i].Bone = parenttbl.Bone
+
+                local pos, ang = LocalToWorld(subatts[i].Pos or Vector(0, 0, 0), subatts[i].Ang or Angle(0, 0, 0), parenttbl.Pos, parenttbl.Ang)
+
+                subatts[i].Pos = pos
+                subatts[i].Ang = subatts[i].Ang + parenttbl.Ang
+                subatts[i].Installed = tbl.SubAttachments[i].Installed
+                subatts[i].SubAttachments = self:BuildSubAttachmentTree(k, subatts[i])
             end
         end
     end
@@ -84,7 +94,7 @@ function SWEP:BuildSubAttachments(tbl)
 
         if atttbl then
             if atttbl.Attachments then
-                self.Attachments[i].SubAttachments = self:BuildSubAttachmentTree(k)
+                self.Attachments[i].SubAttachments = self:BuildSubAttachmentTree(k, self.Attachments[i])
             end
         end
     end

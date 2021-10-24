@@ -88,7 +88,11 @@ function SWEP:ReceiveWeapon()
     self:BuildSubAttachments(tbl)
 
     if CLIENT then
-        self:SetupModel()
+        self:SetupModel(true)
+        self:SetupModel(false)
+        self:RefreshCustomizeMenu()
+    else
+        self:SendWeapon()
     end
 end
 

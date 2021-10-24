@@ -1,5 +1,3 @@
-if CLIENT then return end
-
 util.AddNetworkString("stalkerplus_togglecustomize")
 util.AddNetworkString("stalkerplus_networkweapon")
 util.AddNetworkString("stalkerplus_sendattinv")

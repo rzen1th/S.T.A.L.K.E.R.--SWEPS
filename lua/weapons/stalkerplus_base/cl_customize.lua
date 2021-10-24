@@ -98,6 +98,13 @@ local mat_circle = Material("stalkerplus/circle.png", "mips smooth")
 local col_hi = Color(255, 237, 193)
 local col_lo = Color(255, 255, 255)
 
+function SWEP:RefreshCustomizeMenu()
+    if !self.CustomizeHUD then return end
+    if !self.CustomizeBoxes then return end
+
+    self:CreateCustomizeBoxes(self.CustomizeHUD)
+end
+
 function SWEP:CreateCustomizeBoxes(panel)
     for _, i in pairs(self.CustomizeBoxes or {}) do
         i:Remove()
@@ -146,19 +153,7 @@ function SWEP:CreateCustomizeBoxes(panel)
             surface.DrawText(txt)
         end
 
-        local apos, _ = self:GetAttPos(cbox.slottbl, false)
-
-        cam.Start3D(nil, nil, self.ViewModelFOV)
-        local screenpos = apos:ToScreen()
-        cam.End3D()
-
-        local sx = screenpos.x
-        local sy = screenpos.y
-
-        sx = sx - (cbox:GetWide() * 0.5) + ScreenScale(8)
-        sy = sy - (cbox:GetTall() * 0.9) - ScreenScale(20)
-
-        cbox:SetPos(sx, sy)
+        cbox:Paint(0, 0)
 
         csquare = vgui.Create("DPanel", cbox)
         csquare.slottbl = i
@@ -166,12 +161,14 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare:SetPos(ScreenScale(48), 0)
         csquare.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
-                self:CreateCustomizeSelectMenu(panel, self2.slottbl)
-                self:CreateCustomizeBoxes(panel)
+                if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
+                    self:CreateCustomizeBoxes(panel)
+                end
             elseif kc == MOUSE_RIGHT then
-                self:Detach(self2.slottbl.Address)
-                self:CreateCustomizeBoxes(panel)
-                self:CreateCustomizeSelectMenu(panel)
+                if self:Detach(self2.slottbl.Address) then
+                    self:CreateCustomizeBoxes(panel)
+                    self:CreateCustomizeSelectMenu(panel)
+                end
             end
         end
         csquare.Paint = function(self2, w, h)
@@ -420,7 +417,9 @@ function SWEP:CreateCustomizeHUD()
         end
     end
 
-    self:CreateCustomizeBoxes(bg)
+    timer.Simple(0.1, function()
+        self:RefreshCustomizeMenu()
+    end)
 end
 
 function SWEP:RemoveCustomizeHUD()

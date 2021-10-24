@@ -72,7 +72,7 @@ function SWEP:Holster()
     end
 
     if CLIENT then
-        -- self:RemoveCustomizeHUD()
+        self:RemoveCustomizeHUD()
     end
 
     -- if CLIENT then
