@@ -34,6 +34,12 @@ function SWEP:DrawCustomModel(wm)
 
     if !mdl then
         self:SetupModel(wm)
+
+        mdl = self.VModel
+
+        if wm then
+            mdl = self.WModel
+        end
     end
 
     for _, model in pairs(mdl) do

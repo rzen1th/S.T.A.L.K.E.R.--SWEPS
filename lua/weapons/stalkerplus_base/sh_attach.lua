@@ -1,7 +1,31 @@
-function SWEP:Attach(slot, att, silent)
+function SWEP:Attach(addr, att, silent)
+    if !self:CanAttach(addr, att) then return end
+
+    local slottbl = self:LocateSlotFromAddress(addr)
+
+    slottbl.Installed = att
+
+    if CLIENT then
+        self:SendWeapon()
+        self:SetupModel(true)
+        self:SetupModel(false)
+        self:InvalidateCache()
+    end
 end
 
-function SWEP:Detach(slot, silent)
+function SWEP:Detach(addr, silent)
+    if !self:CanDetach(addr) then return end
+
+    local slottbl = self:LocateSlotFromAddress(addr)
+
+    slottbl.Installed = nil
+
+    if CLIENT then
+        self:SendWeapon()
+        self:SetupModel(true)
+        self:SetupModel(false)
+        self:InvalidateCache()
+    end
 end
 
 function SWEP:ToggleCustomize(on)
@@ -16,12 +40,14 @@ function SWEP:ToggleCustomize(on)
     end
 end
 
-function SWEP:CanAttach(slot, att)
-    local slottbl = self:LocateSlotFromAddress(slot)
+function SWEP:CanAttach(addr, att)
+    local slottbl = self:LocateSlotFromAddress(addr)
+
+    return true
 end
 
-function SWEP:CanDetach(slot)
-    local slottbl = self:LocateSlotFromAddress(slot)
+function SWEP:CanDetach(addr)
+    local slottbl = self:LocateSlotFromAddress(addr)
 
     if slottbl and slottbl.Integral then return false end
 

@@ -51,6 +51,8 @@ function SWEP:GetAttachmentList()
 end
 
 function SWEP:BuildSubAttachmentTree(tbl)
+    if !tbl.Installed then return {} end
+
     local atttbl = STALKERPLUS.GetAttTable(tbl.Installed)
 
     local subatts = {}
@@ -75,6 +77,8 @@ function SWEP:BuildSubAttachments(tbl)
 
     for i, k in pairs(tbl) do
         self.Attachments[i].Installed = k.Installed
+
+        if !k.Installed then continue end
 
         local atttbl = STALKERPLUS.GetAttTable(k.Installed)
 

@@ -2,7 +2,6 @@ if CLIENT then return end
 
 util.AddNetworkString("stalkerplus_togglecustomize")
 util.AddNetworkString("stalkerplus_networkweapon")
-util.AddNetworkString("stalkerplus_attach")
 util.AddNetworkString("stalkerplus_sendattinv")
 util.AddNetworkString("stalkerplus_sendbullet")
 
@@ -16,14 +15,10 @@ net.Receive("stalkerplus_togglecustomize", function(len, ply)
     wpn:ToggleCustomize(bf)
 end)
 
-net.Receive("stalkerplus_attach", function(len, ply)
-    // TODO
-end)
-
-net.Receive("stalkerplus_receivepreset", function(len, ply)
+net.Receive("stalkerplus_networkweapon", function(len, ply)
     local wpn = net.ReadEntity()
 
     if !wpn.STALKERPLUS then return end
 
-    wpn:ReceivePreset()
+    wpn:ReceiveWeapon()
 end)

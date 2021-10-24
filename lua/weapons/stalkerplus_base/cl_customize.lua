@@ -96,6 +96,7 @@ SWEP.CustomizeBoxes = nil
 local mat_circle = Material("stalkerplus/circle.png", "mips smooth")
 
 local col_hi = Color(255, 237, 193)
+local col_lo = Color(255, 255, 255)
 
 function SWEP:CreateCustomizeBoxes(panel)
     for _, i in pairs(self.CustomizeBoxes or {}) do
@@ -145,12 +146,33 @@ function SWEP:CreateCustomizeBoxes(panel)
             surface.DrawText(txt)
         end
 
+        local apos, _ = self:GetAttPos(cbox.slottbl, false)
+
+        cam.Start3D(nil, nil, self.ViewModelFOV)
+        local screenpos = apos:ToScreen()
+        cam.End3D()
+
+        local sx = screenpos.x
+        local sy = screenpos.y
+
+        sx = sx - (cbox:GetWide() * 0.5) + ScreenScale(8)
+        sy = sy - (cbox:GetTall() * 0.9) - ScreenScale(20)
+
+        cbox:SetPos(sx, sy)
+
         csquare = vgui.Create("DPanel", cbox)
         csquare.slottbl = i
         csquare:SetSize(ScreenScale(32), ScreenScale(32))
         csquare:SetPos(ScreenScale(48), 0)
         csquare.OnMousePressed = function(self2, kc)
-            self:CreateCustomizeSelectMenu(panel, self2.slottbl)
+            if kc == MOUSE_LEFT then
+                self:CreateCustomizeSelectMenu(panel, self2.slottbl)
+                self:CreateCustomizeBoxes(panel)
+            elseif kc == MOUSE_RIGHT then
+                self:Detach(self2.slottbl.Address)
+                self:CreateCustomizeBoxes(panel)
+                self:CreateCustomizeSelectMenu(panel)
+            end
         end
         csquare.Paint = function(self2, w, h)
             local col1 = Color(0, 0, 0, 150)
@@ -192,6 +214,8 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
         self.CustomizeSelectMenu:Remove()
         self.CustomizeSelectMenu = nil
     end
+
+    if !slottbl then return end
 
     local bg = vgui.Create("DPanel", panel)
 
@@ -276,16 +300,33 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
         attbtn:SetSize(ScreenScale(96), ScreenScale(12))
         attbtn:Dock(TOP)
         attbtn.att = att
+        attbtn.slottbl = slottbl
         attbtn.address = slottbl.Address
+        attbtn.OnMousePressed = function(self2, kc)
+            if kc == MOUSE_LEFT then
+                self:Attach(self2.slottbl.Address, self2.att)
+                self:CreateCustomizeBoxes(panel)
+            elseif kc == MOUSE_RIGHT then
+                self:Detach(self2.slottbl.Address)
+                self:CreateCustomizeBoxes(panel)
+            end
+        end
         attbtn.Paint = function(self2, w, h)
             surface.SetDrawColor(col_hi)
             surface.DrawLine(0, h-1, w, h-1)
 
+            local attached = self2.slottbl.Installed == self2.att
+
             local col1 = Color(0, 0, 0, 150)
             local col2 = col_hi
 
-            if self2:IsHovered() then
+            if self2:IsHovered() or attached then
                 col1 = col_hi
+                col2 = Color(0, 0, 0, 255)
+            end
+
+            if self2:IsHovered() and attached then
+                col1 = col_lo
                 col2 = Color(0, 0, 0, 255)
             end
 
