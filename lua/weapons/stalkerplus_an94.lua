@@ -241,11 +241,11 @@ SWEP.AttachmentElements = {
 
 SWEP.Attachments = {
     [1] = {
-        Installed = "optic_rds",
+        Installed = "optic_kobra",
         PrintName = "Optic",
-        Category = {"optic_dovetail", "optic_dovetail"},
+        Category = {"optic_dovetail", "optic_picatinny"},
         Bone = "body",
-        Pos = Vector(0, 0, 4),
+        Pos = Vector(0.5, 1, 4),
         Ang = Angle(90, 0, -90),
     }
 }

@@ -1,6 +1,6 @@
 VertexLitGeneric
 {
- $basetexture "models/stalker/weapons/addons/glass"
+ $basetexture "models/weapons/stalker/addons/glass"
  $envmap env_cubemap
  $normalmapalphaenvmapmask 1
  $translucent 1

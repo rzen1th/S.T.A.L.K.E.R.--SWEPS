@@ -6,12 +6,12 @@ ATT.SortOrder = 1
 
 ATT.Model = "models/weapons/stalker/addons/cobra.mdl"
 
-ATT.Category = "optic_picatinny" // can be "string" or {"list", "of", "strings"}
+ATT.Category = "optic_dovetail" // can be "string" or {"list", "of", "strings"}
 
 // Allows a custom sight position to be defined
 ATT.Sights = {
     {
-        Pos = Vector(0.5486, 10, -2.2326),
+        Pos = Vector(-0.5486, 10, -2.2326),
         Ang = Angle(0, 0, 0),
         Magnification = 1.15
     }

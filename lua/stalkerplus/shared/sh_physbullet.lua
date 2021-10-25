@@ -325,8 +325,8 @@ function STALKERPLUS:ProgressPhysBullet(bullet, timestep)
     end
 end
 
-local head = Material("effects/whiteflare")
-local tracer = Material("effects/smoke_trail")
+local head = Material("particle/particle_glow_04")
+local tracer = Material("effects/tracer_middle")
 
 function STALKERPLUS:DrawPhysBullets()
     cam.Start3D()
