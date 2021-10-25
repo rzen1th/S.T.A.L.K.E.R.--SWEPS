@@ -39,7 +39,6 @@ function SWEP:Reload()
     else
         self:SetTimer(self:GetProcessedValue("LoadInTime") * self:GetProcessedValue("ReloadTime", 1), function()
             self:SetLoadedRounds(math.min(self:GetValue("ClipSize"), self:Clip1() + self:Ammo1()))
-            self:DoBulletBodygroups()
         end)
     end
 
@@ -54,8 +53,6 @@ function SWEP:Reload()
 
     self:SetReloading(true)
     self:SetEndReload(false)
-
-    self:DoBulletBodygroups()
 
     -- self:SetTimer(t * 0.9, function()
     --     if !IsValid(self) then return end
@@ -130,8 +127,6 @@ function SWEP:EndReload()
 
             self:SetNthShot(0)
             self:SetNthReload(self:GetNthReload() + 1)
-
-            self:DoBulletBodygroups()
         else
             local t = self:PlayAnimation("reload_insert", self:GetProcessedValue("ReloadTime", 1), true)
 
@@ -152,8 +147,6 @@ function SWEP:EndReload()
 
             --     self:EndReload()
             -- end)
-
-            self:DoBulletBodygroups()
         end
     else
         self:RestoreClip(self:GetValue("ClipSize"))

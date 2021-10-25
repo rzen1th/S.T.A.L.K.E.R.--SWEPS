@@ -36,6 +36,7 @@ $bodygroup "5" {
 
 $bodygroup "6" {
 	studio "ak74_mag_bullets.smd" // Didn't parent them to the mags just in case
+	blank
 }
 
 $cdmaterials "models\weapons\stalker"

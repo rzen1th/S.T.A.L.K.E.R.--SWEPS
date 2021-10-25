@@ -9,6 +9,9 @@ function SWEP:PreDrawViewModel()
             surface.DrawRect(0, 0, ScrW(), ScrH())
         cam.End2D()
     end
+
+    self:DoBodygroups(false)
+
     cam.IgnoreZ(true)
 end
 

@@ -46,7 +46,3 @@ end
 function SWEP:GetElements()
     return {}
 end
-
-function SWEP:DoBulletBodygroups()
-    self:DoBodygroups(false)
-end

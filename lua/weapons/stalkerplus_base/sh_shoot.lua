@@ -167,8 +167,6 @@ function SWEP:PrimaryAttack()
 
     self:ApplyRecoil()
 
-    self:DoBulletBodygroups()
-
     self:SetBurstCount(self:GetBurstCount() + 1)
 
     if self:GetCurrentFiremode() == 1 or self:Clip1() == 0 then
