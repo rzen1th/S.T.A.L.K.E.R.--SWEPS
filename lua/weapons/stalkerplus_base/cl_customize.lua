@@ -173,10 +173,12 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare.Paint = function(self2, w, h)
             local col1 = Color(0, 0, 0, 150)
             local col2 = col_hi
+            local col3 = Color(255, 255, 255)
 
             if self2:IsHovered() then
                 col1 = Color(100, 100, 100, 150)
                 col2 = Color(0, 0, 0, 255)
+                col3 = Color(50, 50, 50)
             end
 
             surface.SetDrawColor(col1)
@@ -185,7 +187,7 @@ function SWEP:CreateCustomizeBoxes(panel)
             if self2.slottbl.Installed then
                 local atttbl = STALKERPLUS.GetAttTable(self2.slottbl.Installed)
 
-                surface.SetDrawColor(col2)
+                surface.SetDrawColor(col3)
                 surface.SetMaterial(atttbl.Icon)
                 surface.DrawTexturedRect(0, 0, w, h)
             end

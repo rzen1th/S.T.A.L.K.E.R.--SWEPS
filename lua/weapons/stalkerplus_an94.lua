@@ -245,7 +245,7 @@ SWEP.Attachments = {
         PrintName = "Optic",
         Category = {"optic_dovetail", "optic_picatinny"},
         Bone = "body",
-        Pos = Vector(0.5, 1, 4),
+        Pos = Vector(0.5, 1, 3),
         Ang = Angle(90, 0, -90),
     }
 }
