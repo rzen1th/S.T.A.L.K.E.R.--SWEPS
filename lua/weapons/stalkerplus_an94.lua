@@ -256,5 +256,3 @@ SWEP.Attachments = {
         Ang = Angle(90, 0, -90),
     }
 }
-
-//balls balls balls balls balls balls balls balls balls balls balls balls balls balls balls balls balls 
