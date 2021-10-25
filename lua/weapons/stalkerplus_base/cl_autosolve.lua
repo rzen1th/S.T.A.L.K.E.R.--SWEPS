@@ -89,3 +89,16 @@ function SWEP:SwitchMultiSight()
         // eh put some code in here
     end
 end
+
+function SWEP:GetMagnification()
+    return self:GetSight().Magnification or 1
+end
+
+function SWEP:AdjustMouseSensitivity()
+    local mag = self:GetMagnification()
+    -- local fov = 90
+
+    if mag > 0 then
+        return 1 / mag
+    end
+end

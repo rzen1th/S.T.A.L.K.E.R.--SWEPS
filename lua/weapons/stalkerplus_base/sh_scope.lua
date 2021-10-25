@@ -61,16 +61,3 @@ function SWEP:ThinkSights()
         end
     end
 end
-
-function SWEP:GetShouldFOV()
-    return GetConVar("fov_desired"):GetFloat()
-end
-
-function SWEP:AdjustMouseSensitivity()
-    local fov = self:GetShouldFOV()
-    -- local fov = 90
-
-    if fov > 0 then
-        return fov / 90
-    end
-end

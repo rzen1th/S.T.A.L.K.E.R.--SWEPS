@@ -12,7 +12,8 @@ ATT.Category = "optic_picatinny" // can be "string" or {"list", "of", "strings"}
 ATT.Sights = {
     {
         Pos = Vector(0, 10, -1.18694),
-        Ang = Angle(0, 0, 0)
+        Ang = Angle(0, 0, 0),
+        Magnification = 1.5
     }
 }
 

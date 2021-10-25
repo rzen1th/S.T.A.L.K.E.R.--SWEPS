@@ -38,6 +38,6 @@ function SWEP:ApplyRecoil()
 
     -- self:GetOwner():SetViewPunchAngles(Angle(vis_kick_v, vis_kick_h, vis_shake))
 
-    self:GetOwner():SetFOV(self:GetShouldFOV() * 0.99, 0)
-    self:GetOwner():SetFOV(self:GetShouldFOV(), 60 / (self:GetProcessedValue("RPM")))
+    self:GetOwner():SetFOV(self:GetOwner():GetFOV() * 0.99, 0)
+    self:GetOwner():SetFOV(0, 60 / (self:GetProcessedValue("RPM")))
 end
