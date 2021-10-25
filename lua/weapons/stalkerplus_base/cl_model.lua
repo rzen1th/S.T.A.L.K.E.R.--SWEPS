@@ -117,8 +117,6 @@ function SWEP:SetupModel(wm)
 
     if !wm and self:GetOwner() != LocalPlayer() then return end
 
-    self:DoBodygroups(wm)
-
     for _, slottbl in pairs(self:GetSubSlotList()) do
         if !slottbl.Installed then continue end
 

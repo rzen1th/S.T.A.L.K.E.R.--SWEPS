@@ -68,7 +68,7 @@ end
 SWEP.MultiSightIndex = 1
 
 function SWEP:GetSight()
-    return self.MultiSightTable[self.MultiSightIndex]
+    return self.MultiSightTable[self.MultiSightIndex] or {}
 end
 
 function SWEP:GetSightPositions()

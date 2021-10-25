@@ -350,12 +350,21 @@ SWEP.LastShot = false
 // Attachments
 
 SWEP.AttachmentElements = {
-    ["bg_name"] = {
-        Bodygroups = {
-            {1, 1}
-        },
-        -- Other attachment parameters work here
-    }
+    -- ["bg_name"] = {
+    --     Bodygroups = {
+    --         {1, 1}
+    --     },
+    --     Bonemods = {
+    --         ["body"] = {
+    --             Pos = Vector(0, 0, 0),
+    --             Ang = Angle(0, 0, 0)
+    --         }
+    --     },
+    --     PoseParameters = {
+    --         ["blople"] = 0.5
+    --     }
+    --     -- Other attachment parameters work here
+    -- }
 }
 
 SWEP.Attachments = nil
@@ -363,8 +372,13 @@ SWEP.Attachments = nil
 --     [1] = {
 --         PrintName = "",
 --         DefaultIcon = Material(""),
---         InstalledElements = "", // single or list of elements to activate when something is installed here
---         UnInstalledElements = "",
+--         InstalledElements = {""}, // list of elements to activate when something is installed here
+--         UnInstalledElements = {""},
+--         RequireElements = {}, // {{a and b}, or {c and d and e}, or f}
+--         // list of "strings" or {"lists", "of", "strings"}.
+--         // one of these must all be enabled for this to be valid.
+--         ExcludeElements = {},
+--         // same but for exclusion.
 --         Integral = false, // cannot be removed
 --         Category = "", // single or {"list", "of", "values"}
 --         Bone = "",
@@ -372,6 +386,7 @@ SWEP.Attachments = nil
 --         Ang = Angle(0, 0, 0),
 --         KeepBaseIrons = false,
 --         Installed = nil,
+--         MergeSlots = {},
 --         SubAttachments = {
 --             {
 --                 Installed = nil,

@@ -10,6 +10,7 @@ function SWEP:InvalidateCache()
     self.StatCache = {}
     self.HookCache = {}
     self.AffectorsCache = nil
+    self.ElementsCache = nil
 end
 
 function SWEP:RunHook(val, data)

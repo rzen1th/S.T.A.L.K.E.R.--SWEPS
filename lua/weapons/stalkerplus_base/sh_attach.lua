@@ -44,10 +44,50 @@ function SWEP:ToggleCustomize(on)
     end
 end
 
+function SWEP:GetSlotBlocked(slottbl)
+    local eles = self:GetElements()
+
+    if slottbl.ExcludeElements then
+        for _, group in ipairs(slottbl.ExcludeElements) do
+            if !istable(group) then
+                group = {group}
+            end
+
+            local ok = false
+            for _, ele in ipairs(group) do
+                if !eles[ele] then ok = true break end
+            end
+
+            if !ok then return true end
+        end
+    end
+
+    if slottbl.RequireElements then
+        for _, group in ipairs(slottbl.ExcludeElements) do
+            if !istable(group) then
+                group = {group}
+            end
+
+            local ok = true
+            for _, ele in ipairs(group) do
+                if !eles[ele] then ok = false break end
+            end
+
+            if ok then return true end
+        end
+
+        return true
+    end
+
+    return false
+end
+
 function SWEP:CanAttach(addr, att, slottbl)
     slottbl = slottbl or self:LocateSlotFromAddress(addr)
 
     if self:RunHook("Hook_BlockAttachment", {att = att, slottbl = slottbl}) == false then return false end
+
+    if self:GetSlotBlocked(slottbl) then return false end
 
     local cat = slottbl.Category
 
