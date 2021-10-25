@@ -44,6 +44,44 @@ function SWEP:ToggleCustomize(on)
     end
 end
 
+function SWEP:GetAttBlocked(atttbl)
+    local eles = self:GetElements()
+
+    if atttbl.ExcludeElements then
+        for _, group in ipairs(atttbl.ExcludeElements) do
+            if !istable(group) then
+                group = {group}
+            end
+
+            local ok = false
+            for _, ele in ipairs(group) do
+                if !eles[ele] then ok = true break end
+            end
+
+            if !ok then return true end
+        end
+    end
+
+    if atttbl.RequireElements then
+        for _, group in ipairs(atttbl.ExcludeElements) do
+            if !istable(group) then
+                group = {group}
+            end
+
+            local ok = true
+            for _, ele in ipairs(group) do
+                if !eles[ele] then ok = false break end
+            end
+
+            if ok then return true end
+        end
+
+        return true
+    end
+
+    return false
+end
+
 function SWEP:GetSlotBlocked(slottbl)
     local eles = self:GetElements()
 
@@ -96,6 +134,8 @@ function SWEP:CanAttach(addr, att, slottbl)
     end
 
     local atttbl = STALKERPLUS.GetAttTable(att)
+
+    if self:GetAttBlocked(atttbl) then return false end
 
     local attcat = atttbl.Category
 
