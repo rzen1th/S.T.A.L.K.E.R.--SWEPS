@@ -103,6 +103,8 @@ function SWEP:GetViewModelPosition(pos, ang)
         extra_offsetpos = extra_offsetpos + (Vector(0, 0, -24) * (math.cos(math.rad(self.MenuRotation.y)) - 1) / -2)
 
         extra_offsetpos = LerpVector(1 - curvedcustomizedelta, extra_offsetpos, Vector(0, 0, 0))
+
+        extra_offsetpos:Normalize()
     end
 
     self.ViewModelPos = LerpVector(0.8, offsetpos, self.ViewModelPos)

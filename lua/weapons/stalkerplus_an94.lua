@@ -225,26 +225,6 @@ SWEP.EjectDelay = 0
 
 SWEP.AnimationTranslationTable = {
     ["inspect"] = {"inspect_01", "inspect_02", "inspect_03"}
-} // translates ["fire"] = "shoot"; key = translates from, value = translates to
-// e.g. you have a "shoot1" sequence and need "fire"
-// so ["fire"] = "shoot1"
-// can be ["fire"] = {"list", "of", "values"}
-
-SWEP.AnimationTranslateHook = nil
--- function(self, animation) return animation end
-
-SWEP.PoseParameters = {
-    ["firemode"] = 1
-}
-
--- after this animation, set this pose parameter to this value.
-SWEP.AnimationPoseParams = {
-    -- ["firemode_1"] = {
-    --     ["firemode"] = 2
-    -- },
-    -- ["firemode_2"] = {
-    --     ["firemode"] = 1
-    -- },
 }
 
 SWEP.LastShot = false
@@ -252,15 +232,20 @@ SWEP.LastShot = false
 // Attachments
 
 SWEP.AttachmentElements = {
+    ["optic_dovetail"] = {
+        Bodygroups = {
+            {3, 1}
+        },
+    }
 }
 
 SWEP.Attachments = {
     [1] = {
         Installed = "optic_rds",
         PrintName = "Optic",
-        Category = {"optic_picatinny", "optic_dovetail"},
+        Category = {"optic_dovetail", "optic_dovetail"},
         Bone = "body",
         Pos = Vector(0, 0, 4),
-        Ang = Angle(90, 0, -180),
+        Ang = Angle(90, 0, -90),
     }
 }

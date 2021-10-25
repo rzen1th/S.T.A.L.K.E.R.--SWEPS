@@ -41,19 +41,6 @@ end
 function SWEP:GenerateAutoSight(sight, slottbl)
     local pos, ang = self:GetAttPos(slottbl, false, true)
 
-    -- local x = pos.x
-    -- local y = pos.y
-    -- local z = pos.z
-
-    -- pos.x = -y
-    -- pos.y = x
-    -- pos.z = z
-
-    -- pos, ang = WorldToLocal(pos, ang, Vector(0, 0, 0), Angle(0, 0, 0))
-
-    -- pos = -pos
-    -- ang = ang
-
     pos = pos - (ang:Right() * sight.Pos.x)
     pos = pos - (ang:Forward() * sight.Pos.y)
     pos = pos - (ang:Up() * sight.Pos.z)
@@ -69,18 +56,9 @@ function SWEP:GenerateAutoSight(sight, slottbl)
 
     local up, forward, right = s_ang:Up(), s_ang:Forward(), s_ang:Right()
 
-    -- s_ang:RotateAroundAxis(forward, -ang.r)
-    -- s_ang:RotateAroundAxis(up, ang.p)
-    -- s_ang:RotateAroundAxis(right, ang.y)
-
     s_pos = s_pos + (right * pos.x)
     s_pos = s_pos + (forward * pos.y)
     s_pos = s_pos + (up * -pos.z)
-
-    debugoverlay.Axis(s_pos, s_ang, 16, 1, true) 
-
-    -- s_pos = -pos
-    -- s_ang = -ang
 
     return {
         Pos = s_pos,

@@ -10,6 +10,12 @@ function SWEP:GetElements()
             table.Add(eles, slottbl.InstalledElements or {})
             local atttbl = STALKERPLUS.GetAttTable(slottbl.Installed)
             table.Add(eles, atttbl.ActivateElements or {})
+            local cat = atttbl.Category
+            if !istable(cat) then
+                cat = {cat}
+            end
+            table.Add(eles, cat)
+            table.insert(eles, slottbl.Installed)
         else
             table.Add(eles, slottbl.UnInstalledElements or {})
         end
