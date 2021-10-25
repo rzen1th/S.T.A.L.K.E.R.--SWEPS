@@ -20,6 +20,8 @@ function SWEP:ExitSights()
     self:EmitSound(self:GetProcessedValue("SoundExitSights"), 100, 75)
 end
 
+SWEP.LastPressedETime = 0
+
 function SWEP:ThinkSights()
     if self:GetSafe() then return end
 
@@ -45,6 +47,18 @@ function SWEP:ThinkSights()
         end
 
         self:EnterSights()
+    end
+
+    if self:GetOwner():KeyPressed(IN_USE) then
+        if CurTime() - self.LastPressedETime < 0.33 then
+            if game.SinglePlayer() then
+                self:CallOnClient("SwitchMultiSight")
+            elseif CLIENT then
+                self:SwitchMultiSight()
+            end
+        else
+            self.LastPressedETime = CurTime()
+        end
     end
 end
 

@@ -32,6 +32,10 @@ function SWEP:BuildMultiSight()
         table.Add(self.MultiSightTable, self.BaseSights)
         self.MultiSightTable = tbl
     end
+
+    if self.MultiSightIndex > #self.MultiSightTable then
+        self.MultiSightIndex = 1
+    end
 end
 
 function SWEP:GenerateAutoSight(sight, slottbl)
@@ -61,12 +65,27 @@ function SWEP:GenerateAutoSight(sight, slottbl)
     }
 end
 
+SWEP.MultiSightIndex = 1
+
 function SWEP:GetSight()
-    return self.MultiSightTable[1]
+    return self.MultiSightTable[self.MultiSightIndex]
 end
 
 function SWEP:GetSightPositions()
     -- self:GenerateAutoSight()
     local s = self:GetSight()
     return s.Pos, s.Ang
+end
+
+function SWEP:SwitchMultiSight()
+    local old_msi = self.MultiSightIndex
+    self.MultiSightIndex = self.MultiSightIndex + 1
+
+    if self.MultiSightIndex > #self.MultiSightTable then
+        self.MultiSightIndex = 1
+    end
+
+    if self.MultiSightIndex != old_msi then
+        // eh put some code in here
+    end
 end
