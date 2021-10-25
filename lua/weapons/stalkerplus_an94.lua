@@ -174,7 +174,7 @@ SWEP.SprintMidPoint = {
 
 // Sounds
 
-SWEP.SoundShoot = "weapons/stalker/ak74_shot_0.ogg"
+SWEP.SoundShoot = "weapons/stalker/abakan/abakan_example.ogg"
 SWEP.SoundShootOverrideSilenced = nil
 
 SWEP.SoundDryFire = "weapons/stalker/generic_empty.ogg"
@@ -252,7 +252,7 @@ SWEP.Attachments = {
         PrintName = "Optic",
         Category = {"optic_dovetail", "optic_picatinny"},
         Bone = "body",
-        Pos = Vector(0.5, 1, 3),
+        Pos = Vector(0.5, 1, 0),
         Ang = Angle(90, 0, -90),
     }
 }

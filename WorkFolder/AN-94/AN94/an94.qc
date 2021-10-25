@@ -98,8 +98,8 @@ $sequence "reload" {
 
 $sequence "reload_empty" {
 	"anims\reload_empty.smd"
-	//"anims\reload_empty_iron.smd"
-	//blend "sights" 0 1
+	"anims\reload_empty_iron.smd"
+	blend "sights" 0 1
 	fps 25
 	"ACT_VM_RELOAD" 1
 	snap
@@ -147,6 +147,8 @@ $sequence "reload_empty_10" {
 
 $sequence "inspect_01" {
 	"anims\inspect_01.smd"
+	"anims\inspect_iron_01.smd"
+	blend "sights" 0 1
 	"ACT_VM_IDLE" 1
 	fadein 0.03
 	fadeout 0.03
@@ -155,6 +157,8 @@ $sequence "inspect_01" {
 
 $sequence "inspect_02" {
 	"anims\inspect_02.smd"
+	"anims\inspect_iron_02.smd"
+	blend "sights" 0 1
 	"ACT_VM_IDLE" 1
 	fadein 0.03
 	fadeout 0.03
@@ -163,6 +167,8 @@ $sequence "inspect_02" {
 
 $sequence "inspect_03" {
 	"anims\inspect_03.smd"
+	"anims\inspect_iron_03.smd"
+	blend "sights" 0 1
 	"ACT_VM_IDLE" 1
 	fadein 0.03
 	fadeout 0.03
