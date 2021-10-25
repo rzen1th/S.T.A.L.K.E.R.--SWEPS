@@ -15,11 +15,11 @@ function SWEP:PreDrawViewModel()
     if GetConVar("stalkerplus_benchgun"):GetBool() then
         cam.Start3D()
     end
-    -- cam.IgnoreZ(false)
+    cam.IgnoreZ(true)
 end
 
 function SWEP:PostDrawViewModel()
-    -- cam.IgnoreZ(false)
+    cam.IgnoreZ(false)
     if GetConVar("stalkerplus_benchgun"):GetBool() then
         cam.End3D()
     end

@@ -69,13 +69,15 @@ function SWEP:GenerateAutoSight(sight, slottbl)
 
     local up, forward, right = s_ang:Up(), s_ang:Forward(), s_ang:Right()
 
+    s_ang:RotateAroundAxis(forward, -ang.r)
+    s_ang:RotateAroundAxis(up, ang.y)
+    s_ang:RotateAroundAxis(right, -ang.p)
+
     s_pos = s_pos + (right * pos.x)
     s_pos = s_pos + (forward * pos.y)
     s_pos = s_pos + (up * -pos.z)
 
-    s_ang:RotateAroundAxis(forward, -ang.r)
-    s_ang:RotateAroundAxis(up, ang.y)
-    s_ang:RotateAroundAxis(right, ang.p)
+    -- debugoverlay.Axis(s_pos, s_ang, 16, 1, true) 
 
     return {
         Pos = s_pos,

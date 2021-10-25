@@ -10,7 +10,7 @@ SWEP.TrueName = "AN-94 Abakan"
 
 SWEP.ViewModel = "models/weapons/stalker/c_stalker_an94.mdl"
 
-SWEP.ViewModelFOV = 65
+SWEP.ViewModelFOV = 75
 
 SWEP.Slot = 3
 

@@ -111,20 +111,21 @@ function SWEP:GetViewModelPosition(pos, ang)
     self.ViewModelAng = LerpAngle(0.8, offsetang, self.ViewModelAng)
     offsetang = self.ViewModelAng
 
-    ang:RotateAroundAxis(ang:Up(), offsetang.y)
-    ang:RotateAroundAxis(ang:Right(), offsetang.p)
-    ang:RotateAroundAxis(ang:Forward(), offsetang.r)
     pos = pos + (ang:Right() * offsetpos.x)
     pos = pos + (ang:Forward() * offsetpos.y)
     pos = pos + (ang:Up() * offsetpos.z)
 
-    -- pos = pos + (oldang:Right() * extra_offsetpos[1])
-    -- pos = pos + (oldang:Forward() * extra_offsetpos[2])
-    -- pos = pos + (oldang:Up() * extra_offsetpos[3])
+    ang:RotateAroundAxis(oldang:Up(), offsetang.p)
+    ang:RotateAroundAxis(oldang:Right(), offsetang.y)
+    ang:RotateAroundAxis(oldang:Forward(), offsetang.r)
 
-    -- ang:RotateAroundAxis(oldang:Up(), extra_offsetang[1])
-    -- ang:RotateAroundAxis(oldang:Right(), extra_offsetang[2])
-    -- ang:RotateAroundAxis(oldang:Forward(), extra_offsetang[3])
+    pos = pos + (oldang:Right() * extra_offsetpos[1])
+    pos = pos + (oldang:Forward() * extra_offsetpos[2])
+    pos = pos + (oldang:Up() * extra_offsetpos[3])
+
+    ang:RotateAroundAxis(oldang:Up(), extra_offsetang[1])
+    ang:RotateAroundAxis(oldang:Right(), extra_offsetang[2])
+    ang:RotateAroundAxis(oldang:Forward(), extra_offsetang[3])
 
     pos, ang = self:GetViewModelBob(pos, ang)
     pos, ang = self:GetMidAirBob(pos, ang)
