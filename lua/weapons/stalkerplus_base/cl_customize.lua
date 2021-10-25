@@ -119,6 +119,11 @@ function SWEP:CreateCustomizeBoxes(panel)
         cbox:SetPos(0, 0)
         cbox.Paint = function(self2, w, h)
             local apos, _ = self:GetAttPos(self2.slottbl, false)
+            local col1 = col_hi
+
+            if self:GetSlotBlocked(self2.slottbl) then
+                col1 = Color(255, 100, 100)
+            end
 
             cam.Start3D(nil, nil, self.ViewModelFOV)
             local screenpos = apos:ToScreen()
@@ -132,7 +137,7 @@ function SWEP:CreateCustomizeBoxes(panel)
 
             self2:SetPos(sx, sy)
 
-            surface.SetDrawColor(col_hi)
+            surface.SetDrawColor(col1)
             surface.SetMaterial(mat_circle)
             local s = ScreenScale(8)
             surface.DrawTexturedRect((w - s) / 2, h - s, s, s)
@@ -145,7 +150,7 @@ function SWEP:CreateCustomizeBoxes(panel)
                 txt = atttbl.CompactName or atttbl.PrintName or atttbl.ShortName
             end
 
-            surface.SetTextColor(col_hi)
+            surface.SetTextColor(col1)
             surface.SetFont("STALKERPLUS_8")
             local tw = surface.GetTextSize(txt)
             surface.SetTextPos((w - tw) / 2, ScreenScale(31))
@@ -160,8 +165,10 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare:SetPos(ScreenScale(48), 0)
         csquare.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
-                if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
-                    self:CreateCustomizeBoxes(panel)
+                if !self:GetSlotBlocked(self2.slottbl) then
+                    if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
+                        self:CreateCustomizeBoxes(panel)
+                    end
                 end
             elseif kc == MOUSE_RIGHT then
                 if self:Detach(self2.slottbl.Address) then
@@ -179,6 +186,12 @@ function SWEP:CreateCustomizeBoxes(panel)
                 col1 = Color(100, 100, 100, 150)
                 col2 = Color(0, 0, 0, 255)
                 col3 = Color(50, 50, 50)
+            end
+
+            if self:GetSlotBlocked(self2.slottbl) then
+                col1 = Color(50, 0, 0, 150)
+                col2 = Color(255, 100, 100)
+                col3 = Color(200, 0, 0)
             end
 
             surface.SetDrawColor(col1)

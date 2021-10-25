@@ -101,7 +101,7 @@ function SWEP:GetSlotBlocked(slottbl)
     end
 
     if slottbl.RequireElements then
-        for _, group in ipairs(slottbl.ExcludeElements) do
+        for _, group in ipairs(slottbl.RequireElements) do
             if !istable(group) then
                 group = {group}
             end
