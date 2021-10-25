@@ -3,7 +3,11 @@ function SWEP:GetAttPos(slottbl, wm, idle)
     local parentmdl = self:GetVM()
 
     if wm then
-        parentmdl = self:GetWM()
+        if slottbl.WMBase then
+            parentmdl = self:GetOwner()
+        else
+            parentmdl = self.WModel[1]
+        end
     end
 
     if idle then
@@ -23,6 +27,10 @@ function SWEP:GetAttPos(slottbl, wm, idle)
 
     local bone = slottbl.Bone
     local atttbl = {}
+
+    if slottbl.WMBase then
+        bone = "ValveBiped.Bip01_R_Hand"
+    end
 
     if slottbl.Installed then
         atttbl = STALKERPLUS.GetAttTable(slottbl.Installed)
@@ -113,6 +121,32 @@ function SWEP:SetupModel(wm)
         self.VModel = {}
     else
         self.WModel = {}
+
+        local csmodel = ClientsideModel(self.MirrorModel or self.ViewModel)
+
+        if !IsValid(csmodel) then return end
+
+        csmodel:SetNoDraw(true)
+        csmodel.atttbl = {}
+        csmodel.slottbl = {
+            WMBase = true,
+            Pos = self.WorldModelOffset.Pos,
+            Ang = self.WorldModelOffset.Ang
+        }
+
+        local scale = Matrix()
+        local vec = Vector(1, 1, 1) * (self.WorldModelOffset.Scale or 1)
+        scale:Scale(vec)
+        csmodel:EnableMatrix("RenderMultiply", scale)
+
+        local tbl = {
+            Model = csmodel,
+            Weapon = self
+        }
+
+        table.insert(STALKERPLUS.CSModelPile, tbl)
+
+        table.insert(self.WModel, 1, csmodel)
     end
 
     if !wm and self:GetOwner() != LocalPlayer() then return end

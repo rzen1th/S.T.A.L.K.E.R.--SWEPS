@@ -56,8 +56,10 @@ SWEP.AdminOnly = false
 SWEP.PrintName = "Stalker+ Base"
 SWEP.TrueName = nil
 
+SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl" // set just for physics
+
 SWEP.ViewModel = ""
-SWEP.MirrorModel = "" // low quality version of viewmodel for use as a worldmodel
+SWEP.MirrorModel = nil // low quality version of viewmodel for use as a worldmodel
 SWEP.WorldModelOffset = {
     Pos = Vector(0, 0, 0),
     Ang = Angle(0, 0, 0),
