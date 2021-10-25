@@ -174,7 +174,7 @@ SWEP.SprintMidPoint = {
 
 // Sounds
 
-SWEP.SoundShoot = "weapons/stalker/ak74_shot_0.ogg"
+SWEP.SoundShoot = "weapons/stalker/abakan/abakan_example.ogg"
 SWEP.SoundShootOverrideSilenced = nil
 
 SWEP.SoundDryFire = "weapons/stalker/generic_empty.ogg"
