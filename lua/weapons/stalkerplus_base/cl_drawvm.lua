@@ -12,11 +12,17 @@ function SWEP:PreDrawViewModel()
 
     self:DoBodygroups(false)
 
-    cam.IgnoreZ(true)
+    if GetConVar("stalkerplus_benchgun"):GetBool() then
+        cam.Start3D()
+    end
+    -- cam.IgnoreZ(false)
 end
 
 function SWEP:PostDrawViewModel()
-    cam.IgnoreZ(false)
+    -- cam.IgnoreZ(false)
+    if GetConVar("stalkerplus_benchgun"):GetBool() then
+        cam.End3D()
+    end
 end
 
 function SWEP:ViewModelDrawn()

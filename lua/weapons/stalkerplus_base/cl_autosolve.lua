@@ -39,28 +39,47 @@ function SWEP:BuildMultiSight()
 end
 
 function SWEP:GenerateAutoSight(sight, slottbl)
-    local apos, aang = self:GetAttPos(slottbl, false, true)
+    local pos, ang = self:GetAttPos(slottbl, false, true)
 
-    local vpos = apos + (aang:Right() * -sight.Pos.x)
-    vpos = vpos + (aang:Forward() * -sight.Pos.y)
-    vpos = vpos + (aang:Up() * -sight.Pos.z)
+    -- local x = pos.x
+    -- local y = pos.y
+    -- local z = pos.z
 
-    local vang = aang
-    vang:RotateAroundAxis(vang:Right(), sight.Ang.p)
-    vang:RotateAroundAxis(vang:Up(), sight.Ang.y)
-    vang:RotateAroundAxis(vang:Forward(), sight.Ang.r)
+    -- pos.x = -y
+    -- pos.y = x
+    -- pos.z = z
 
-    local x = vpos.x
-    local y = vpos.y
-    local z = vpos.z
+    -- pos, ang = WorldToLocal(pos, ang, Vector(0, 0, 0), Angle(0, 0, 0))
 
-    vpos.x = -y
-    vpos.y = x
-    vpos.z = z
+    -- pos = -pos
+    -- ang = ang
+
+    pos = pos - (ang:Right() * sight.Pos.x)
+    pos = pos - (ang:Forward() * sight.Pos.y)
+    pos = pos - (ang:Up() * sight.Pos.z)
+
+    ang:RotateAroundAxis(ang:Right(), sight.Ang.p)
+    ang:RotateAroundAxis(ang:Up(), sight.Ang.y)
+    ang:RotateAroundAxis(ang:Forward(), sight.Ang.r)
+
+    debugoverlay.Axis(pos, ang, 16, 1, true)
+
+    local s_pos = Vector(0, 0, 0)
+    local s_ang = Angle(0, 0, 0)
+
+    local up, forward, right = s_ang:Up(), s_ang:Forward(), s_ang:Right()
+
+    s_pos = s_pos + (right * pos.x)
+    s_pos = s_pos + (forward * pos.y)
+    s_pos = s_pos + (up * -pos.z)
+
+    s_ang:RotateAroundAxis(forward, -ang.r)
+    s_ang:RotateAroundAxis(up, ang.y)
+    s_ang:RotateAroundAxis(right, ang.p)
 
     return {
-        Pos = -vpos,
-        Ang = -vang,
+        Pos = s_pos,
+        Ang = s_ang,
         Magnification = sight.Magnification or 1
     }
 end
@@ -68,11 +87,13 @@ end
 SWEP.MultiSightIndex = 1
 
 function SWEP:GetSight()
+    if GetConVar("developer"):GetBool() then
+        self:BuildMultiSight()
+    end
     return self.MultiSightTable[self.MultiSightIndex] or {}
 end
 
 function SWEP:GetSightPositions()
-    -- self:GenerateAutoSight()
     local s = self:GetSight()
     return s.Pos, s.Ang
 end

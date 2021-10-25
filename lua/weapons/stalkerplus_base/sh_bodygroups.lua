@@ -19,7 +19,11 @@ function SWEP:DoBodygroups(wm)
     local eles = self:GetElements()
 
     for i, k in pairs(eles) do
-        for _, j in pairs(k.Bodygroups or {}) do
+        local ele = self.AttachmentElements[k]
+
+        if !ele then continue end
+
+        for _, j in pairs(ele.Bodygroups or {}) do
             mdl:SetBodygroup(j[1], j[2])
         end
     end
