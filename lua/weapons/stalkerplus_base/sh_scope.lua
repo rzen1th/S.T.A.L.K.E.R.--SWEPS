@@ -7,6 +7,12 @@ function SWEP:EnterSights()
 
     self:SetInSights(true)
     self:EmitSound(self:GetProcessedValue("SoundEnterSights"), 100, 75)
+
+    if CLIENT then
+        self:BuildMultiSight()
+    elseif game.SinglePlayer() then
+        self:CallOnClient("BuildMultiSight")
+    end
 end
 
 function SWEP:ExitSights()

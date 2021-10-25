@@ -31,10 +31,10 @@ function SWEP:GetViewModelPosition(pos, ang)
     -- cor_val = Lerp(sightdelta, cor_val, 1)
 
     if sightdelta > 0 then
-        -- local sightpos, sightang = self:GetSightPositions()
+        local sightpos, sightang = self:GetSightPositions()
 
-        local sightpos = self.SightPos
-        local sightang = self.SightAng
+        -- local sightpos = self.SightPos
+        -- local sightang = self.SightAng
 
         offsetpos = LerpVector(sightdelta, offsetpos, sightpos)
         offsetang = LerpAngle(sightdelta, offsetang, sightang)

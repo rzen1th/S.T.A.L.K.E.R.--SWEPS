@@ -1,8 +1,24 @@
-function SWEP:GetAttPos(slottbl, wm)
+function SWEP:GetAttPos(slottbl, wm, idle)
+    idle = idle or false
     local parentmdl = self:GetVM()
 
     if wm then
         parentmdl = self:GetWM()
+    end
+
+    if idle then
+        parentmdl = ClientsideModel(self.ViewModel)
+        parentmdl:SetPos(Vector(0, 0, 0))
+        parentmdl:SetAngles(Angle(0, 0, 0))
+        parentmdl:SetNoDraw(true)
+
+        local anim = self:TranslateSequence("idle")
+        local seq = parentmdl:LookupSequence(anim)
+
+        parentmdl:ResetSequence(seq)
+        parentmdl:SetPoseParameter("sights", 1)
+
+        parentmdl:SetupBones()
     end
 
     local bone = slottbl.Bone
@@ -12,8 +28,8 @@ function SWEP:GetAttPos(slottbl, wm)
         atttbl = STALKERPLUS.GetAttTable(slottbl.Installed)
     end
 
-    local offset_pos = slottbl.Pos
-    local offset_ang = slottbl.Ang
+    local offset_pos = slottbl.Pos or Vector(0, 0, 0)
+    local offset_ang = slottbl.Ang or Angle(0, 0, 0)
 
     local boneindex = parentmdl:LookupBone(bone)
 
@@ -43,6 +59,10 @@ function SWEP:GetAttPos(slottbl, wm)
     apos = apos + aang:Forward() * moffset.x
     apos = apos + aang:Right() * moffset.y
     apos = apos + aang:Up() * moffset.z
+
+    if idle then
+        SafeRemoveEntity(parentmdl)
+    end
 
     return apos, aang
 end

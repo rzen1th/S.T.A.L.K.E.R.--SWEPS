@@ -44,12 +44,12 @@ SWEP.BodyDamageMultipliers = {
 
 SWEP.Firemodes = {
     {
+        Mode = -1,
+    },
+    {
         Mode = 2,
         RunawayBurst = true,
     },
-    {
-        Mode = -1,
-    }
 }
 
 SWEP.PostBurstDelay = 0.1
@@ -144,8 +144,12 @@ SWEP.CustomizePos = Vector(12, 32, 4)
 SWEP.SprintAng = Angle(30, -15, 0)
 SWEP.SprintPos = Vector(2, 0, 1)
 
-SWEP.SightAng = Angle(0, 0, 3)
-SWEP.SightPos = Vector(-1.89, 0, 1.1)
+SWEP.BaseSights = {
+    {
+        Pos = Vector(-1.89, 0, 1.1),
+        Ang = Angle(0, 0, 3)
+    }
+}
 
 SWEP.StatCache = {}
 SWEP.HookCache = {}

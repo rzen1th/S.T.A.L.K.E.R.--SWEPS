@@ -87,6 +87,8 @@ function SWEP:ReceiveWeapon()
 
     self:BuildSubAttachments(tbl)
 
+    PrintTable(self.Attachments)
+
     if CLIENT then
         self:SetupModel(true)
         self:SetupModel(false)

@@ -5,12 +5,7 @@ function SWEP:Attach(addr, att, silent)
 
     slottbl.Installed = att
 
-    if CLIENT then
-        self:SendWeapon()
-        self:SetupModel(true)
-        self:SetupModel(false)
-        self:InvalidateCache()
-    end
+    self:PostModify()
 
     return true
 end
@@ -22,14 +17,19 @@ function SWEP:Detach(addr, silent)
 
     slottbl.Installed = nil
 
+    self:PostModify()
+
+    return true
+end
+
+function SWEP:PostModify()
+    self:InvalidateCache()
+
     if CLIENT then
         self:SendWeapon()
         self:SetupModel(true)
         self:SetupModel(false)
-        self:InvalidateCache()
     end
-
-    return true
 end
 
 function SWEP:ToggleCustomize(on)
@@ -44,10 +44,32 @@ function SWEP:ToggleCustomize(on)
     end
 end
 
-function SWEP:CanAttach(addr, att)
-    local slottbl = self:LocateSlotFromAddress(addr)
+function SWEP:CanAttach(addr, att, slottbl)
+    slottbl = slottbl or self:LocateSlotFromAddress(addr)
 
-    return true
+    if self:RunHook("Hook_BlockAttachment", {att = att, slottbl = slottbl}) == false then return false end
+
+    local cat = slottbl.Category
+
+    if !istable(cat) then
+        cat = {cat}
+    end
+
+    local atttbl = STALKERPLUS.GetAttTable(att)
+
+    local attcat = atttbl.Category
+
+    if !istable(attcat) then
+        attcat = {attcat}
+    end
+
+    for _, c in pairs(attcat) do
+        if table.HasValue(cat, c) then
+            return true
+        end
+    end
+
+    return false
 end
 
 function SWEP:CanDetach(addr)

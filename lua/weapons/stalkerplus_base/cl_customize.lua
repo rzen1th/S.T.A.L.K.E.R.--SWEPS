@@ -100,7 +100,6 @@ local col_lo = Color(255, 255, 255)
 
 function SWEP:RefreshCustomizeMenu()
     if !self.CustomizeHUD then return end
-    if !self.CustomizeBoxes then return end
 
     self:CreateCustomizeBoxes(self.CustomizeHUD)
 end
@@ -417,7 +416,7 @@ function SWEP:CreateCustomizeHUD()
         end
     end
 
-    timer.Simple(0.1, function()
+    timer.Simple(0, function()
         self:RefreshCustomizeMenu()
     end)
 end

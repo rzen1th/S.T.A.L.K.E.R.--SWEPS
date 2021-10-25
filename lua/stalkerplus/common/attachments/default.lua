@@ -31,8 +31,13 @@ ATT.Laser = false
 ATT.LaserColor = Color(255, 0, 0)
 
 // Allows a custom sight position to be defined
-ATT.SightPos = Vector(0, 0, 0)
-ATT.SightAng = Angle(0, 0, 0)
+
+ATT.Sights = {
+    {
+        Pos = Vector(0, 0, 0),
+        Ang = Angle(0, 0, 0)
+    }
+}
 
 ATT.HoloSight = false
 ATT.HoloSightReticle = Material("")

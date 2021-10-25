@@ -42,11 +42,9 @@ function SWEP:Deploy()
         end
 
         -- self:NetworkWeapon()
-    end
-
-    if CLIENT then
-        -- self:SetupModel(true)
-        -- self:SetupModel(false)
+        self:SetTimer(0.25, function()
+            self:SendWeapon()
+        end)
     end
 
     self:SetShouldHoldType()
@@ -97,6 +95,8 @@ function SWEP:Initialize()
 
     self:BuildAttachmentAddresses()
 
+    self:InitTimers()
+
     self:ClientInitialize()
 end
 
@@ -106,6 +106,8 @@ function SWEP:ClientInitialize()
 
     self:BuildAttachmentAddresses()
     self:SetBaseSettings()
+
+    self:InitTimers()
 end
 
 function SWEP:SetBaseSettings()

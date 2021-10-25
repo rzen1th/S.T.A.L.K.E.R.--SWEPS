@@ -47,7 +47,9 @@ SWEP.AdminOnly = false
 -- SWEP.Hook_BlockFire = function(self) end
 // Return true to block weapon from shooting.
 
-
+-- SWEP.Hook_BlockAttachment = function(self, data) end
+// data: att, slottbl
+// Return true to block attachment from being attached.
 
 // Names
 
@@ -252,8 +254,12 @@ SWEP.SprintPos = Vector(0, 0, 0)
 SWEP.CustomizeAng = Angle(30, 15, 0)
 SWEP.CustomizePos = Vector(5, 0, -6)
 
-SWEP.SightAng = Angle(0, 0, 0)
-SWEP.SightPos = Vector(0, 1, 1)
+SWEP.BaseSights = {
+    {
+        Pos = Vector(0, 0, 0),
+        Ang = Angle(0, 0, 0)
+    }
+}
 
 SWEP.SightMidPoint = {
     Pos = Vector(-1, 15, -6),
@@ -357,7 +363,6 @@ SWEP.Attachments = nil
 --     [1] = {
 --         PrintName = "",
 --         DefaultIcon = Material(""),
---         Default = nil,
 --         InstalledElements = "", // single or list of elements to activate when something is installed here
 --         UnInstalledElements = "",
 --         Integral = false, // cannot be removed

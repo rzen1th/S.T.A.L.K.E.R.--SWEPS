@@ -143,14 +143,14 @@ function SWEP:GetRicochetChance(tr)
     if !GetConVar("stalkerplus_ricochet"):GetBool() then return 0 end
     local degree = tr.HitNormal:Dot((tr.StartPos - tr.HitPos):GetNormalized())
 
-    degree = math.acos(degree)
+    degree = 90 - math.deg(math.acos(degree))
 
     local ricmult = STALKERPLUS.PenTable[tr.MatType] or 1
 
     -- 0 at 1
     -- 100 at 0
 
-    if degree > self:GetProcessedValue("RicochetAngleMax") then return end
+    if degree > self:GetProcessedValue("RicochetAngleMax") then return 0 end
 
     local c = self:GetProcessedValue("RicochetChance")
 

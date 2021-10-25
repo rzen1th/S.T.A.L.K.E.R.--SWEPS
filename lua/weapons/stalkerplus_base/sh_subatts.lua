@@ -7,8 +7,6 @@ end
 function SWEP:BuildAttachmentAddresses()
     self.AttachmentAddresses = {}
 
-    PrintTable(self:GetSubSlotList())
-
     for c, i in pairs(self:GetSubSlotList()) do
         i.Address = c
 
@@ -71,6 +69,7 @@ function SWEP:BuildSubAttachmentTree(tbl, parenttbl)
 
                 subatts[i].Pos = pos
                 subatts[i].Ang = subatts[i].Ang + parenttbl.Ang
+                subatts[i].Ang:Normalize()
                 subatts[i].Installed = tbl.SubAttachments[i].Installed
                 subatts[i].SubAttachments = self:BuildSubAttachmentTree(k, subatts[i])
             end
