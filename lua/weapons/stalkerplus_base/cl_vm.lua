@@ -1,7 +1,7 @@
 SWEP.CustomizeDelta = 0
 
-SWEP.LastViewModelPos = Vector(0, 0, 0)
-SWEP.LastViewModelAng = Angle(0, 0, 0)
+SWEP.ViewModelPos = Vector(0, 0, 0)
+SWEP.ViewModelAng = Angle(0, 0, 0)
 
 function SWEP:GetViewModelPosition(pos, ang)
     if GetConVar("stalkerplus_benchgun"):GetBool() then
@@ -90,13 +90,6 @@ function SWEP:GetViewModelPosition(pos, ang)
     self.BobScale = 0
     self.SwayScale = Lerp(sightdelta, 1, 0.1)
 
-    offsetpos, offsetang = self:GetViewModelBob(offsetpos, offsetang)
-    offsetpos, offsetang = self:GetMidAirBob(offsetpos, offsetang)
-    offsetpos, offsetang = self:GetViewModelLeftRight(offsetpos, offsetang)
-    offsetpos, offsetang = self:GetViewModelInertia(offsetpos, offsetang)
-    offsetpos, offsetang = self:GetViewModelSway(offsetpos, offsetang)
-    offsetpos, offsetang = self:GetViewModelSmooth(offsetpos, offsetang)
-
     if curvedcustomizedelta > 0 then
         offsetpos = LerpVector(curvedcustomizedelta, offsetpos, self:GetProcessedValue("CustomizePos"))
         offsetang = LerpAngle(curvedcustomizedelta, offsetang, self:GetProcessedValue("CustomizeAng"))
@@ -111,6 +104,12 @@ function SWEP:GetViewModelPosition(pos, ang)
 
         extra_offsetpos = LerpVector(1 - curvedcustomizedelta, extra_offsetpos, Vector(0, 0, 0))
     end
+
+    self.ViewModelPos = LerpVector(0.8, offsetpos, self.ViewModelPos)
+    offsetpos = self.ViewModelPos
+
+    self.ViewModelAng = LerpAngle(0.8, offsetang, self.ViewModelAng)
+    offsetang = self.ViewModelAng
 
     pos = pos + (ang:Right() * offsetpos[1])
     pos = pos + (ang:Forward() * offsetpos[2])
@@ -127,6 +126,13 @@ function SWEP:GetViewModelPosition(pos, ang)
     ang:RotateAroundAxis(oldang:Up(), extra_offsetang[1])
     ang:RotateAroundAxis(oldang:Right(), extra_offsetang[2])
     ang:RotateAroundAxis(oldang:Forward(), extra_offsetang[3])
+
+    pos, ang = self:GetViewModelBob(pos, ang)
+    pos, ang = self:GetMidAirBob(pos, ang)
+    pos, ang = self:GetViewModelLeftRight(pos, ang)
+    pos, ang = self:GetViewModelInertia(pos, ang)
+    pos, ang = self:GetViewModelSway(pos, ang)
+    pos, ang = self:GetViewModelSmooth(pos, ang)
 
     self.LastViewModelPos = pos
     self.LastViewModelAng = ang
