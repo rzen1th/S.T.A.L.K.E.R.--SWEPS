@@ -47,7 +47,7 @@ function STALKERPLUS.LoadAtts()
             attent.Spawnable = true
             attent.AdminOnly = ATT.AdminOnly or false
             attent.AttToGive = shortname
-            attent.Category = "Tactical RP - Attachments"
+            attent.Category = "STALKER+ - Attachments"
 
             print("Registering entity for " .. shortname)
 
