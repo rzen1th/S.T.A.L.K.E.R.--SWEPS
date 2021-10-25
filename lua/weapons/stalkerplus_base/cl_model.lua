@@ -149,6 +149,8 @@ function SWEP:SetupModel(wm)
         table.insert(self.WModel, 1, csmodel)
     end
 
+    self:DoBodygroups(wm)
+
     if !wm and self:GetOwner() != LocalPlayer() then return end
 
     for _, slottbl in pairs(self:GetSubSlotList()) do

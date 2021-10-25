@@ -24,7 +24,6 @@ function SWEP:DoBodygroups(wm)
         if !ele then continue end
 
         for _, j in pairs(ele.Bodygroups or {}) do
-            print("uhh yeah?")
             mdl:SetBodygroup(j[1], j[2])
         end
     end
