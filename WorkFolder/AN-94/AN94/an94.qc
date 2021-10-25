@@ -23,16 +23,10 @@ $bodygroup "3" {
 }
 
 $bodygroup "4" {
-	studio "an94_stock_polymer.smd"
-	studio "an94_stock_polymerfolded.smd"
-	studio "an94_stock_skeleton.smd"
-	studio "an94_stock_skeletonfolded.smd"
-	studio "an94_stock_green.smd"
-	studio "an94_stock_greenfolded.smd"
-	studio "an94_stock_plum.smd"
-	studio "an94_stock_plumfolded.smd"
-	studio "an94_stock_wood.smd"
-	studio "an94_stock_woodfolded.smd"
+	studio "an94_polymer_stock.smd"
+	studio "an94_polymerfolded_stock.smd"
+	studio "an94_skeleton_stock.smd"
+	studio "an94_skeletonfolded_stock.smd"
 }
 
 $bodygroup "5" {
