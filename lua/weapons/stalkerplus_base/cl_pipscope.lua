@@ -3,28 +3,26 @@ local rtmat = GetRenderTarget("stalkerplus_pipscope", 512, 512, false)
 local rtsize = 512
 
 function SWEP:DoRT(fov)
-    if !GetConVar("stalkerplus_cheapscopes"):GetBool() then
-        local rt = {
-            x = 0,
-            y = 0,
-            w = rtsize,
-            h = rtsize,
-            angles = self:GetOwner():EyeAngles(),
-            origin = self:GetOwner():GetShootPos(),
-            drawviewmodel = false,
-            fov = fov,
-        }
+    local rt = {
+        x = 0,
+        y = 0,
+        w = rtsize,
+        h = rtsize,
+        angles = self:GetOwner():EyeAngles(),
+        origin = self:GetOwner():GetShootPos(),
+        drawviewmodel = false,
+        fov = fov,
+    }
 
-        render.PushRenderTarget(rtmat, 0, 0, rtsize, rtsize)
+    render.PushRenderTarget(rtmat, 0, 0, rtsize, rtsize)
 
-        render.RenderView(rt)
+    render.RenderView(rt)
 
-        render.PopRenderTarget()
-    end
+    render.PopRenderTarget()
 end
 
 local rtsurf = Material("effects/stalkerplus_rt")
-local shadow = Material("stalkerplus/shadow.png", "smooth")
+local shadow = Material("stalkerplus/shadow.png")
 
 function SWEP:DoRTScope(model, atttbl)
     local pos = model:GetPos()
