@@ -55,13 +55,13 @@ function SWEP:DoCheapScope(fov)
     scrw = scrw
     scrh = scrh * 9 / 16
 
-    local s = (self:GetOwner():GetFOV() / fov) / 1.4
+    local s = (self:GetOwner():GetFOV() / self:GetMagnification() / fov) * 1.4
 
     local scrx = (ScrW() - scrw * s) / 2
     local scry = (ScrH() - scrh * s) / 2
 
-    scrx = scrx + 16
-    scry = scry + 16
+    scrx = scrx + 8
+    scry = scry + 8
 
     STALKERPLUS:DrawPhysBullets()
 
