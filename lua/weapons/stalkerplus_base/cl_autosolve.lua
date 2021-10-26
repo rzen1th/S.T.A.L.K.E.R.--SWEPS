@@ -96,10 +96,19 @@ function SWEP:SwitchMultiSight()
 end
 
 function SWEP:GetMagnification()
-    return self:GetSight().Magnification or 1
+    local sight = self:GetSight()
+    local mag = sight.Magnification or 1
+
+    if sight.RTScope then
+        mag = mag * (90 / sight.RTScopeFOV)
+    end
+
+    return mag
 end
 
 function SWEP:AdjustMouseSensitivity()
+    if self:GetSightAmount() <= 0 then return end
+
     local mag = self:GetMagnification()
     -- local fov = 90
 

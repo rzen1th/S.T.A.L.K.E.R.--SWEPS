@@ -339,9 +339,9 @@ function STALKERPLUS:DrawPhysBullets()
 
         size = math.Clamp(size, 0, math.huge)
 
-        local delta = (EyePos():DistToSqr(i.Pos) / math.pow(20000, 2))
+        -- local delta = (EyePos():DistToSqr(i.Pos) / math.pow(20000, 2))
 
-        size = math.pow(size, Lerp(delta, 1, 2))
+        -- size = math.pow(size, Lerp(delta, 1, 2))
 
         -- cam.Start3D()
 

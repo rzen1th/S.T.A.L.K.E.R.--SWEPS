@@ -8,6 +8,8 @@ function SWEP:GetViewModelPosition(pos, ang)
         return Vector(0, 0, 0), Angle(0, 0, 0)
     end
 
+    self:FormCheapScope()
+
     -- pos = Vector(0, 0, 0)
     -- ang = Angle(0, 0, 0)
 

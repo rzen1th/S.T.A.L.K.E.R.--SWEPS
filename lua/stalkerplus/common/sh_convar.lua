@@ -98,6 +98,10 @@ local conVars = {
         default = "10",
         replicated = true
     },
+    {
+        name = "cheapscopes",
+        default = "0"
+    }
 }
 
 local prefix = "STALKERPLUS_"

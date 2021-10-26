@@ -364,8 +364,7 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
     self.CustomizeSelectMenu = bg
 end
 
-SWEP.MenuRotationY = 0
-SWEP.MenuRotationP = 0
+SWEP.MenuRotation = Angle(0, 0, 0)
 SWEP.MenuRotating = false
 SWEP.LastMouseX = 0
 SWEP.LastMouseY = 0

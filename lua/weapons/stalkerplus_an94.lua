@@ -57,6 +57,9 @@ SWEP.Firemodes = {
         Mode = 2,
         RunawayBurst = true,
     },
+    {
+        Mode = 1
+    }
 }
 
 SWEP.PostBurstDelay = 0.1
@@ -248,7 +251,6 @@ SWEP.AttachmentElements = {
 
 SWEP.Attachments = {
     [1] = {
-        Installed = "optic_kobra",
         PrintName = "DTAIL",
         Category = "optic_dovetail",
         Bone = "body",
