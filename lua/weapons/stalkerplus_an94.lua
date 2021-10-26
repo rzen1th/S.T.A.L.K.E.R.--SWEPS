@@ -202,19 +202,9 @@ SWEP.QCA_Muzzle = 1
 // ditto for shell
 SWEP.QCA_Eject = 2
 
-SWEP.MuzzleEffect = ""
-
-SWEP.EjectEffect = ""
-SWEP.EjectDelay = 0
-
-// the .qc attachment for the muzzle
-SWEP.QCA_Muzzle = 1
-// ditto for shell
-SWEP.QCA_Eject = 2
-
 SWEP.MuzzleEffect = "muzzleflash_pistol"
 
-SWEP.EjectEffect = 1 // 1 = pistol, 2 = rifle, 3 = shotgun
+SWEP.EjectEffect = 2 // 1 = pistol, 2 = rifle, 3 = shotgun
 SWEP.EjectDelay = 0
 
 // anims

@@ -6,7 +6,7 @@ function SWEP:DoEffects()
     data:SetEntity(self)
     data:SetAttachment(muzz_qca)
 
-    util.Effect( "TacRP_muzzleeffect", data )
+    util.Effect( "stalkerplus_muzzleeffect", data )
 end
 
 function SWEP:GetQCAMuzzle()
@@ -30,7 +30,7 @@ function SWEP:DoEject()
     data:SetFlags(self:GetProcessedValue("EjectEffect"))
     data:SetAttachment(eject_qca)
 
-    util.Effect( "TacRP_shelleffect", data )
+    util.Effect( "stalkerplus_shelleffect", data )
 end
 
 function SWEP:GetTracerOrigin()

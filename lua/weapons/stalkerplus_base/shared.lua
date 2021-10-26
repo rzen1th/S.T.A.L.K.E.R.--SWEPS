@@ -291,15 +291,6 @@ SWEP.SoundEnterSights = ""
 SWEP.SoundExitSights = ""
 
 // Effects
-// the .qc attachment for the muzzle
-SWEP.QCA_Muzzle = 1
-// ditto for shell
-SWEP.QCA_Eject = 2
-
-SWEP.MuzzleEffect = ""
-
-SWEP.EjectEffect = ""
-SWEP.EjectDelay = 0
 
 // the .qc attachment for the muzzle
 SWEP.QCA_Muzzle = 1
