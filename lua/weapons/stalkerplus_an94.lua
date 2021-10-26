@@ -246,6 +246,11 @@ SWEP.AttachmentElements = {
         Bodygroups = {
             {3, 1}
         },
+    },
+    ["rails"] = {
+        Bodygroups = {
+            {5, 1}
+        }
     }
 }
 
@@ -256,5 +261,38 @@ SWEP.Attachments = {
         Bone = "body",
         Pos = Vector(0.6, 0.75, -0.1),
         Ang = Angle(90, 0, -90),
-    }
+    },
+    [2] = {
+        PrintName = "OPTIC",
+        Category = {"optic_picatinny", "tactical_top"},
+        InstalledElements = {"rails"},
+        Bone = "body",
+        Pos = Vector(0, -0.1, 10.75),
+        Ang = Angle(90, 0, -90),
+    },
+    [3] = {
+        PrintName = "RAIL",
+        Category = {"tactical"},
+        InstalledElements = {"rails"},
+        Bone = "body",
+        Pos = Vector(0.6, 1.6, 10.75),
+        Ang = Angle(90, 0, 180),
+    },
+    [4] = {
+        PrintName = "RAIL",
+        Category = {"tactical"},
+        InstalledElements = {"rails"},
+        Bone = "body",
+        Pos = Vector(-0.6, 1.6, 10.75),
+        Ang = Angle(90, 0, 0),
+    },
+    [5] = {
+        PrintName = "UNDER-BRL",
+        Category = {"tactical_bottom", "foregrip"},
+        InstalledElements = {"rails"},
+        ExcludeElements = {"ubgl"},
+        Bone = "body",
+        Pos = Vector(0, 3, 10.75),
+        Ang = Angle(90, 0, -90),
+    },
 }

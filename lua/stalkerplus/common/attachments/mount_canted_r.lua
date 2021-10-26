@@ -8,7 +8,9 @@ ATT.InvAtt = "mount_canted"
 
 ATT.Model = "models/weapons/stalker/addons/mount_canted_r.mdl"
 
-ATT.Category = "optic_picatinny" // can be "string" or {"list", "of", "strings"}
+ATT.Max = 4
+
+ATT.Category = {"optic_picatinny", "optic_picatinny_small", "riser", "riser_small"} // can be "string" or {"list", "of", "strings"}
 
 ATT.Attachments = {
     {

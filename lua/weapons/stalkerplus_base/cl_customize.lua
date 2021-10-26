@@ -159,7 +159,7 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare:SetPos(0, 0)
         csquare.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
-                if !self:GetSlotBlocked(self2.slottbl) and !self2.slottbl.Installed then
+                if !self:GetSlotBlocked(self2.slottbl) or self2.slottbl.Installed then
                     if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
                         self.CustomizeSelectAddr = self2.slottbl.Address
                         self:CreateCustomizeBoxes(panel)
@@ -167,9 +167,9 @@ function SWEP:CreateCustomizeBoxes(panel)
                 end
             elseif kc == MOUSE_RIGHT then
                 if self:Detach(self2.slottbl.Address) then
+                    self.CustomizeSelectAddr = self2.slottbl.Address
                     self:CreateCustomizeBoxes(panel)
                     self:CreateCustomizeSelectMenu(panel)
-                    self.CustomizeSelectAddr = self2.slottbl.Address
                 end
             end
         end
@@ -384,6 +384,7 @@ end
 
 SWEP.MenuRotation = Angle(0, 0, 0)
 SWEP.MenuRotating = false
+SWEP.MenuZooming = false
 SWEP.LastMouseX = 0
 SWEP.LastMouseY = 0
 
@@ -417,6 +418,11 @@ function SWEP:CreateCustomizeHUD()
             self.LastMousePos = Vec
 
             self.LastMouseX, self.LastMouseY = input.GetCursorPos()
+        elseif kc == MOUSE_RIGHT then
+            self.MenuZooming = true
+            self.LastMousePos = Vec
+
+            self.LastMouseX, self.LastMouseY = input.GetCursorPos()
         end
     end
     bg.Paint = function(self2, w, h)
@@ -433,9 +439,12 @@ function SWEP:CreateCustomizeHUD()
         surface.SetTextColor(0, 0, 0)
         surface.DrawText(name_txt)
 
-        if self.MenuRotating then
+        if self.MenuRotating or self.MenuZooming then
             if !input.IsMouseDown(MOUSE_LEFT) then
                 self.MenuRotating = false
+            end
+            if !input.IsMouseDown(MOUSE_RIGHT) then
+                self.MenuZooming = false
             end
 
             local mousex, mousey = input.GetCursorPos()
@@ -446,7 +455,13 @@ function SWEP:CreateCustomizeHUD()
             dx = dx * 200 / ScrW()
             dy = dy * 200 / ScrW()
 
-            self.MenuRotation = self.MenuRotation + Angle(dx, dy, 0)
+            if self.MenuRotating then
+                self.MenuRotation = self.MenuRotation + Angle(dx, 0, 0)
+            end
+
+            if self.MenuZooming then
+                self.MenuRotation = self.MenuRotation + Angle(0, dx, -dy)
+            end
             self.MenuRotation:Normalize()
 
             self.LastMouseX, self.LastMouseY = input.GetCursorPos()
