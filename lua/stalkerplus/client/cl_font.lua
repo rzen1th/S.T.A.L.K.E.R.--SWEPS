@@ -19,7 +19,7 @@ local function generatefonts()
         surface.CreateFont( "STALKERPLUS_" .. tostring(i), {
             font = font,
             size = ScreenScale(i),
-            weight = 800,
+            weight = 500,
             antialias = true,
             extended = true, -- Required for non-latin fonts
         } )
@@ -27,7 +27,7 @@ local function generatefonts()
         surface.CreateFont( "STALKERPLUS_" .. tostring(i) .. "_Glow", {
             font = font,
             size = ScreenScale(i),
-            weight = 800,
+            weight = 500,
             antialias = true,
             blursize = 6,
             extended = true,
@@ -40,7 +40,7 @@ local function generatefonts()
         surface.CreateFont( "STALKERPLUS_" .. tostring(i) .. "_Unscaled", {
             font = font,
             size = i,
-            weight = 800,
+            weight = 500,
             antialias = true,
             extended = true,
         } )
