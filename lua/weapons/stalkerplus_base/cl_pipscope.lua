@@ -12,7 +12,7 @@ function SWEP:DoRT(fov)
         h = rtsize,
         angles = self:GetOwner():EyeAngles(),
         origin = self:GetOwner():GetShootPos(),
-        drawviewmodel = true,
+        drawviewmodel = false,
         fov = fov,
     }
 
@@ -26,7 +26,7 @@ function SWEP:DoRT(fov)
 end
 
 local rtsurf = Material("effects/stalkerplus_rt")
-local shadow = Material("stalkerplus/shadow.png")
+local shadow = Material("stalkerplus/shadow.png", "smooth")
 
 function SWEP:DoRTScope(model, atttbl)
     local pos = model:GetPos()
@@ -39,7 +39,7 @@ function SWEP:DoRTScope(model, atttbl)
     local sh_x = (screenpos.x - (ScrW() / 2)) + (rtsize / 2)
     local sh_y = (screenpos.y - (ScrH() / 2)) + (rtsize / 2)
 
-    local sh_s = math.floor(rtsize * 0.8)
+    local sh_s = math.floor(rtsize * 1)
 
     sh_x = sh_x - (sh_s / 2)
     sh_y = sh_y - (sh_s / 2)

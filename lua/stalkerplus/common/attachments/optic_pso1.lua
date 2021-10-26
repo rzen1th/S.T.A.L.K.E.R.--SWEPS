@@ -13,7 +13,7 @@ ATT.Sights = {
     {
         Pos = Vector(-0.523455, 12.5, -2.07457),
         Ang = Angle(0, 0, 0),
-        Magnification = 3
+        Magnification = 2.5
     }
 }
 
@@ -23,3 +23,5 @@ ATT.RTScopeFOV = 6
 ATT.RTScopeRes = 512
 ATT.RTScopeSurface = Material("effects/stalkerplus_rt")
 ATT.RTScopeReticle = Material("stalkerplus/pso1.png")
+
+ATT.HugeAssScope = true

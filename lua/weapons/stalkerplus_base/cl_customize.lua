@@ -86,6 +86,7 @@ local function DrawTextRot(span, txt, x, y, tx, ty, maxw, only)
         surface.DrawText(txt)
         render.SetScissorRect(0, 0, 0, 0, false)
     else
+        surface.SetTextPos(tx, ty)
         surface.DrawText(txt)
     end
 end
@@ -118,7 +119,7 @@ function SWEP:CreateCustomizeBoxes(panel)
         local cbox = vgui.Create("DPanel", panel)
         cbox.slottbl = i
 
-        cbox:SetSize(ScreenScale(32), ScreenScale(48))
+        cbox:SetSize(ScreenScale(32), ScreenScale(40))
         cbox:SetPos(0, 0)
         cbox.Paint = function(self2, w, h)
             local apos, aang = self:GetAttPos(self2.slottbl, false)
@@ -148,20 +149,6 @@ function SWEP:CreateCustomizeBoxes(panel)
             surface.SetMaterial(mat_circle)
             local s = ScreenScale(8)
             surface.DrawTexturedRect((w - s) / 2, h - s, s, s)
-
-            local txt = self2.slottbl.PrintName or ""
-
-            if self2.slottbl.Installed then
-                local atttbl = STALKERPLUS.GetAttTable(self2.slottbl.Installed)
-
-                txt = atttbl.CompactName or atttbl.PrintName or atttbl.ShortName
-            end
-
-            surface.SetTextColor(col1)
-            surface.SetFont("STALKERPLUS_8")
-            local tw = surface.GetTextSize(txt)
-            surface.SetTextPos((w - tw) / 2, ScreenScale(31))
-            surface.DrawText(txt)
         end
 
         cbox:Paint(0, 0)
@@ -213,6 +200,21 @@ function SWEP:CreateCustomizeBoxes(panel)
                 surface.SetMaterial(atttbl.Icon)
                 surface.DrawTexturedRect(0, 0, w, h)
             end
+
+            local txt = self2.slottbl.PrintName or ""
+
+            if self2.slottbl.Installed then
+                local atttbl = STALKERPLUS.GetAttTable(self2.slottbl.Installed)
+
+                txt = atttbl.CompactName or atttbl.PrintName or atttbl.ShortName
+            end
+
+            surface.SetTextColor(col2)
+            surface.SetFont("STALKERPLUS_8")
+            -- local tw = surface.GetTextSize(txt)
+            -- surface.SetTextPos(0, 0)
+            -- surface.DrawText(txt)
+            DrawTextRot(self2, txt, 0, ScreenScale(32 - 8 - 1), ScreenScale(2), ScreenScale(32 - 8 - 1), ScreenScale(32))
 
             surface.SetDrawColor(col2)
 

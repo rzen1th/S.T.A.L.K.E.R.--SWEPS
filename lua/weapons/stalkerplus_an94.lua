@@ -152,6 +152,12 @@ SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_AR2
 SWEP.PassiveAng = Angle(0, 0, 0)
 SWEP.PassivePos = Vector(0, 0, 0)
 
+SWEP.PassivePosHook = function(self, ppos)
+    if self:GetValue("HugeAssScope") then
+        return Vector(1, 1, -2.5)
+    end
+end
+
 SWEP.CustomizeAng = Angle(90, 0, 0)
 SWEP.CustomizePos = Vector(12, 32, 4)
 

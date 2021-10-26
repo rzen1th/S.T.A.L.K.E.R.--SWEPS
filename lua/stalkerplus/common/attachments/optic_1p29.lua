@@ -23,3 +23,5 @@ ATT.RTScopeFOV = 8
 ATT.RTScopeRes = 512
 ATT.RTScopeSurface = Material("effects/stalkerplus_rt")
 ATT.RTScopeReticle = Material("stalkerplus/1P29.png")
+
+ATT.HugeAssScope = true
