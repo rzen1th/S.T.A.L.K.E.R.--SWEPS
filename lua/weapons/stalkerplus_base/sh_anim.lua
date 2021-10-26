@@ -11,6 +11,9 @@ function SWEP:PlayAnimation(seq, mult, lock, doidle)
     if !IsValid(vm) then return end
 
     if isstring(seq) then
+        if self.AnimationSoundTables[seq] then
+            self:PlaySoundTable(self.AnimationSoundTables[seq])
+        end
         seq = vm:LookupSequence(seq)
     end
 

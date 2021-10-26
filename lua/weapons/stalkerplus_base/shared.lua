@@ -347,6 +347,18 @@ SWEP.AnimationTranslationTable = {
 SWEP.AnimationTranslateHook = nil
 -- function(self, animation) return animation end
 
+SWEP.AnimationSoundTables = {
+    -- ["reload"] = {
+    --     {
+    --         s = "", -- sound; can be string or table
+    --         p = 100, -- pitch
+    --         v = 75, -- volume
+    --         t = 1, -- time at which to play, in seconds * mult
+    --         c = CHAN_ITEM, -- channel to play the sound
+    --     }
+    -- }
+}
+
 SWEP.LastShot = false
 
 // Attachments

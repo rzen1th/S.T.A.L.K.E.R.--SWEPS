@@ -51,3 +51,29 @@ function SWEP:ProcessTimers()
 
     self.ActiveTimers = keeptimers
 end
+
+function SWEP:PlaySoundTable(soundtable, mult)
+    --if CLIENT and game.SinglePlayer() then return end
+
+    local owner = self:GetOwner()
+
+    start = start or 0
+    mult  = 1 / (mult or 1)
+
+    for _, v in pairs(soundtable) do
+        local ttime
+        if v.t then
+            ttime = v.t * mult
+        else
+            continue
+        end
+        if ttime < 0 then continue end
+        if !(IsValid(self) and IsValid(owner)) then continue end
+
+        local playtime = CurTime() + ttime
+
+        self:SetTimer(playtime, function()
+            self:EmitSound(v.s or "", v.v or 75, v.p or 100, 1, v.c or CHAN_AUTO)
+        end)
+    end
+end
