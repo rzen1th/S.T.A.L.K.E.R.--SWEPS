@@ -18,6 +18,7 @@ function SWEP:BuildMultiSight()
             for _, sight in pairs(atttbl.Sights) do
                 local s = self:GenerateAutoSight(sight, slottbl)
                 s.atttbl = atttbl
+                s.ExtraSightDistance = slottbl.ExtraSightDistance or 0
                 table.insert(self.MultiSightTable, s)
             end
 
@@ -85,7 +86,9 @@ end
 
 function SWEP:GetExtraSightPositions()
     local s = self:GetSight()
-    return s.ExtraPos or Vector(0, 0, 0), s.ExtraAng or Angle(0, 0, 0)
+    local se = s.ExtraPos or Vector(0, 0, 0)
+    se.y = se.y - (s.ExtraSightDistance or 0)
+    return se, s.ExtraAng or Angle(0, 0, 0)
 end
 
 function SWEP:SwitchMultiSight()

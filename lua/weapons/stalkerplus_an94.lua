@@ -267,6 +267,7 @@ SWEP.Attachments = {
         Category = {"optic_picatinny", "tactical_top"},
         InstalledElements = {"rails"},
         Bone = "body",
+        ExtraSightDistance = 10,
         Pos = Vector(0, -0.1, 10.75),
         Ang = Angle(90, 0, -90),
     },
