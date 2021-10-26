@@ -11,7 +11,7 @@ ATT.Category = "optic_dovetail" // can be "string" or {"list", "of", "strings"}
 // Allows a custom sight position to be defined
 ATT.Sights = {
     {
-        Pos = Vector(-0.481055, 10, -2.2157),
+        Pos = Vector(-0.562441, 10, -2.28104),
         Ang = Angle(0, 0, 0),
         Magnification = 1.15
     }

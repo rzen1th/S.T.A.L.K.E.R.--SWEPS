@@ -117,6 +117,7 @@ function SWEP:CreateCustomizeBoxes(panel)
 
         cbox:SetSize(ScreenScale(128), ScreenScale(48))
         cbox:SetPos(0, 0)
+        cbox:MoveToBack()
         cbox.Paint = function(self2, w, h)
             local apos, _ = self:GetAttPos(self2.slottbl, false)
             local col1 = col_hi
