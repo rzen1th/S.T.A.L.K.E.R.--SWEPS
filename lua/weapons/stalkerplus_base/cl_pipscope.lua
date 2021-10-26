@@ -9,8 +9,8 @@ function SWEP:DoRT(fov)
             y = 0,
             w = rtsize,
             h = rtsize,
-            angles = ang,
-            origin = pos,
+            angles = self:GetOwner():EyeAngles(),
+            origin = self:GetOwner():GetShootPos(),
             drawviewmodel = false,
             fov = fov,
         }
@@ -24,8 +24,23 @@ function SWEP:DoRT(fov)
 end
 
 local rtsurf = Material("effects/stalkerplus_rt")
+local shadow = Material("stalkerplus/shadow.png", "mips smooth")
 
 function SWEP:DoRTScope(model, atttbl)
+    local pos = self:GetOwner():EyePos()
+
+    pos = pos + model:GetAngles():Forward() * 12000
+
+    local screenpos = pos:ToScreen()
+
+    local sh_x = ((screenpos.x - (ScrW() / 2)) * -1) + (rtsize / 2)
+    local sh_y = ((screenpos.y - (ScrH() / 2)) * -1) + (rtsize / 2)
+
+    local sh_s = math.floor(rtsize * 0.8 * self:GetSightAmount())
+
+    sh_x = sh_x - (sh_s / 2)
+    sh_y = sh_y - (sh_s / 2)
+
     render.PushRenderTarget(rtmat)
 
     cam.Start2D()
@@ -33,6 +48,19 @@ function SWEP:DoRTScope(model, atttbl)
     surface.SetDrawColor(255, 255, 255)
     surface.SetMaterial(atttbl.RTScopeReticle)
     surface.DrawTexturedRect(0, 0, rtsize, rtsize)
+
+    surface.SetDrawColor(0, 0, 0)
+    surface.SetMaterial(shadow)
+    surface.DrawTexturedRect(sh_x, sh_y, sh_s, sh_s)
+
+    if !screenpos.visible then
+        surface.DrawRect(0, 0, rtsize, rtsize)
+    else
+        surface.DrawRect(sh_x - rtsize, sh_y - rtsize, rtsize * 4, rtsize)
+        surface.DrawRect(sh_x - rtsize, sh_y - rtsize, rtsize, rtsize * 4)
+        surface.DrawRect(sh_x + sh_s, sh_y - rtsize, rtsize, rtsize * 4)
+        surface.DrawRect(sh_x - rtsize, sh_y + sh_s, rtsize * 4, rtsize)
+    end
 
     surface.SetDrawColor(0, 0, 0, 255 * (1 - self:GetSightAmount()))
     surface.DrawRect(0, 0, rtsize, rtsize)
@@ -55,7 +83,7 @@ function SWEP:DoCheapScope(fov)
     scrw = scrw
     scrh = scrh * 9 / 16
 
-    local s = (self:GetOwner():GetFOV() / self:GetMagnification() / fov) * 1.4
+    local s = (self:GetOwner():GetFOV() / self:GetMagnification() / fov) * 1.40
 
     local scrx = (ScrW() - scrw * s) / 2
     local scry = (ScrH() - scrh * s) / 2
