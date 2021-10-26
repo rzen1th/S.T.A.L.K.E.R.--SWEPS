@@ -11,3 +11,5 @@ ATT.Category = "mag_ak74_60" // can be "string" or {"list", "of", "strings"}
 // Allows a custom sight position to be defined
 
 ATT.ActivateElements = {"mag_60"}
+
+ATT.ClipSize = 60
