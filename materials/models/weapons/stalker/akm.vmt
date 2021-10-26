@@ -5,12 +5,12 @@ VertexLitGeneric
     $bumpmap "models/weapons/stalker/akm_bump"
     $normalmapalphaenvmapmask 1
     $envmapsaturation "0.350000"
-    $envmaptint "[0.02 0.02 0.02]"
+    $envmaptint "[0.01 0.01 0.01]"
     $phong 1
-    $phongboost 1
-    $phongfresnelranges "[0.5 5 35]"
+    $phongboost 0.2
+    $phongfresnelranges "[1 3 8]"
     $phongexponent 20
-    $rimlight 0
+    $rimlight 1
     $rimlightexponent 62
     $rimlightboost "0.300000"
 }
