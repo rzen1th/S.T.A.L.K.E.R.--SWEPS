@@ -123,7 +123,7 @@ function SWEP:CreateCustomizeBoxes(panel)
         cbox:SetPos(0, 0)
         cbox.Paint = function(self2, w, h)
             local apos, aang = self:GetAttPos(self2.slottbl, false)
-            apos = apos + (aang:Up() * 2)
+            apos = apos + (aang:Up() * 3.5)
             local col1 = col_hi
 
             if self:GetSlotBlocked(self2.slottbl) and !self2.slottbl.Installed then
@@ -383,6 +383,7 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
 end
 
 SWEP.MenuRotation = Angle(0, 0, 0)
+SWEP.MenuPan = Vector(0, 0, 0)
 SWEP.MenuRotating = false
 SWEP.MenuZooming = false
 SWEP.LastMouseX = 0
@@ -392,7 +393,9 @@ function SWEP:CreateCustomizeHUD()
     self:RemoveCustomizeHUD()
 
     self.MenuRotation = Angle(0, 0, 0)
+    self.MenuPan = Vector(0, 0, 0)
     self.MenuRotating = false
+    self.MenuZooming = false
 
     gui.EnableScreenClicker(true)
 
@@ -425,6 +428,10 @@ function SWEP:CreateCustomizeHUD()
             self.LastMouseX, self.LastMouseY = input.GetCursorPos()
         end
     end
+    bg.OnMouseWheeled = function(self2, sd)
+        self.MenuPan = self.MenuPan + Vector(0, 0, sd)
+    end
+
     bg.Paint = function(self2, w, h)
         if !IsValid(self) then
             self:Remove()
@@ -456,11 +463,11 @@ function SWEP:CreateCustomizeHUD()
             dy = dy * 200 / ScrW()
 
             if self.MenuRotating then
-                self.MenuRotation = self.MenuRotation + Angle(dx, 0, 0)
+                self.MenuRotation = self.MenuRotation + Angle(dx, dy, 0)
             end
 
             if self.MenuZooming then
-                self.MenuRotation = self.MenuRotation + Angle(0, dx, -dy)
+                self.MenuPan = self.MenuPan + Vector(dx, dy, 0)
             end
             self.MenuRotation:Normalize()
 

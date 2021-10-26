@@ -101,3 +101,26 @@ function SWEP:BuildSubAttachments(tbl)
 
     self:BuildAttachmentAddresses()
 end
+
+function SWEP:ValidateInventoryForNewTree(tree)
+    local count = self:CountAttsInTree(tree)
+
+    local currcount = self:CountAttsInTree(self.Attachments)
+
+    for att, attc in pairs(count) do
+        local atttbl = STALKERPLUS.GetAttTable(att)
+
+        if atttbl.Free then continue end
+
+        if (currcount[att] or 0) + STALKERPLUS:PlayerGetAtts(self:GetOwner(), att) > count[att] then
+            continue
+        end
+
+        return false
+    end
+
+    return true
+end
+
+function SWEP:PruneAttachments()
+end

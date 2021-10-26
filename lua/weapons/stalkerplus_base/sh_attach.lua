@@ -142,16 +142,10 @@ function SWEP:CanAttach(addr, att, slottbl)
     if atttbl.Max then
         local count = self:CountAttachments(att)
 
-        if atttbl.InvAtt then
-            count = count + self:CountAttachments(atttbl.InvAtt)
-        end
-
         if slottbl.Installed then
             local installed_atttbl = STALKERPLUS.GetAttTable(slottbl.Installed)
 
-            if installed_atttbl.InvAtt == att or att.InvAtt == slottbl.Installed then
-                count = count - 1
-            elseif slottbl.Installed == installed_atttbl.InvAtt then
+            if slottbl.Installed == installed_atttbl.InvAtt then
                 count = count - 1
             end
         end
@@ -191,8 +185,7 @@ function SWEP:CountAttachments(countatt)
         if !countatt then
             qty = qty + 1
         else
-            local atttbl = STALKERPLUS.GetAttTable(att)
-            if countatt == att or countatt == atttbl.InvAtt then
+            if countatt == att then
                 qty = qty + 1
             end
         end

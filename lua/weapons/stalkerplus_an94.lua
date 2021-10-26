@@ -159,7 +159,7 @@ SWEP.PassivePosHook = function(self, ppos)
 end
 
 SWEP.CustomizeAng = Angle(90, 0, 0)
-SWEP.CustomizePos = Vector(12, 32, 4)
+SWEP.CustomizePos = Vector(12, 24, 4)
 
 SWEP.SprintAng = Angle(30, -15, 0)
 SWEP.SprintPos = Vector(2, 0, 1)

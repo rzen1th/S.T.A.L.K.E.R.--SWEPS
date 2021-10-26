@@ -52,37 +52,6 @@ function SWEP:CountAttsInTree(tree)
     return count
 end
 
-function SWEP:ValidateAttachable(tree)
-    for _, slottbl in pairs(tree) do
-        if !slottbl.Installed then continue end
-        if self:CanAttach(nil, slottbl.Installed, slottbl) then
-            
-        end
-    end
-
-    return true
-end
-
-function SWEP:ValidateNewTree(tree)
-    local count = self:CountAttsInTree(tree)
-
-    local currcount = self:CountAttsInTree(self.Attachments)
-
-    for att, attc in pairs(count) do
-        local atttbl = STALKERPLUS.GetAttTable(att)
-
-        if atttbl.Free then continue end
-
-        if (currcount[att] or 0) + STALKERPLUS:PlayerGetAtts(self:GetOwner(), att) > count[att] then
-            continue
-        end
-
-        return false
-    end
-
-    return true
-end
-
 function SWEP:ReceiveWeapon()
     local tbl = {}
 
