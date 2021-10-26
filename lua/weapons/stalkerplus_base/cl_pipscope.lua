@@ -3,6 +3,8 @@ local rtmat = GetRenderTarget("stalkerplus_pipscope", 512, 512, false)
 local rtsize = 512
 
 function SWEP:DoRT(fov)
+    if STALKERPLUS.OverDraw then return end
+
     local rt = {
         x = 0,
         y = 0,
@@ -10,13 +12,15 @@ function SWEP:DoRT(fov)
         h = rtsize,
         angles = self:GetOwner():EyeAngles(),
         origin = self:GetOwner():GetShootPos(),
-        drawviewmodel = false,
+        drawviewmodel = true,
         fov = fov,
     }
 
     render.PushRenderTarget(rtmat, 0, 0, rtsize, rtsize)
 
+    STALKERPLUS.OverDraw = true
     render.RenderView(rt)
+    STALKERPLUS.OverDraw = false
 
     render.PopRenderTarget()
 end

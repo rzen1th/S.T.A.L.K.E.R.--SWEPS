@@ -108,10 +108,12 @@ function SWEP:GetViewModelPosition(pos, ang)
         extra_offsetpos = LerpVector(1 - curvedcustomizedelta, extra_offsetpos, Vector(0, 0, 0))
     end
 
-    self.ViewModelPos = LerpVector(0.8, offsetpos, self.ViewModelPos)
-    offsetpos = self.ViewModelPos
+    if IsFirstTimePredicted() then
+        self.ViewModelPos = LerpVector(0.8, offsetpos, self.ViewModelPos)
+        self.ViewModelAng = LerpAngle(0.8, offsetang, self.ViewModelAng)
+    end
 
-    self.ViewModelAng = LerpAngle(0.8, offsetang, self.ViewModelAng)
+    offsetpos = self.ViewModelPos
     offsetang = self.ViewModelAng
     self.ViewModelAng:Normalize()
 

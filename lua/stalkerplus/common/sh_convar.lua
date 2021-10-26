@@ -2,15 +2,8 @@
 
 local conVars = {
     {
-        name = "showgrenadepanel",
-        default = "1",
-        type = "bool",
-        client = true
-    },
-    {
-        name = "autoreload",
+        name = "truenames",
         default = "0",
-        client = true
     },
     {
         name = "autosave",

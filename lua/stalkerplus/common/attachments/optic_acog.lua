@@ -11,9 +11,9 @@ ATT.Category = "optic_picatinny" // can be "string" or {"list", "of", "strings"}
 // Allows a custom sight position to be defined
 ATT.Sights = {
     {
-        Pos = Vector(0, 10, -0.991123),
+        Pos = Vector(0, 7.5, -0.991123),
         Ang = Angle(0, 0, 0),
-        Magnification = 3.5
+        Magnification = 2.5
     }
 }
 

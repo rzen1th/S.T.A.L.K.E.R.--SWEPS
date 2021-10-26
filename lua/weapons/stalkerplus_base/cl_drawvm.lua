@@ -11,6 +11,7 @@ function SWEP:PreDrawViewModel()
     end
 
     self:DoBodygroups(false)
+    self:GetVM():SetPoseParameter("sights", self:GetSightAmount())
 
     if GetConVar("stalkerplus_benchgun"):GetBool() then
         cam.Start3D()

@@ -8,6 +8,10 @@ SWEP.Category = "STALKER+"
 SWEP.PrintName = "AC-96/2 Obokan"
 SWEP.TrueName = "AN-94 Abakan"
 
+if GetConVar("stalkerplus_truenames"):GetBool() then
+    SWEP.PrintName = SWEP.TrueName
+end
+
 SWEP.ViewModel = "models/weapons/stalker/c_stalker_an94.mdl"
 SWEP.WorldModel = "models/weapons/w_rif_ak47.mdl"
 
