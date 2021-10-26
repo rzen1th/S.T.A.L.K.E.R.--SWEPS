@@ -102,6 +102,9 @@ function SWEP:RefreshCustomizeMenu()
     if !self.CustomizeHUD then return end
 
     self:CreateCustomizeBoxes(self.CustomizeHUD)
+    if self.CustomizeSelectAddr then
+        self:CreateCustomizeSelectMenu(self.CustomizeHUD, self:LocateSlotFromAddress(self.CustomizeSelectAddr))
+    end
 end
 
 function SWEP:CreateCustomizeBoxes(panel)
@@ -115,9 +118,8 @@ function SWEP:CreateCustomizeBoxes(panel)
         local cbox = vgui.Create("DPanel", panel)
         cbox.slottbl = i
 
-        cbox:SetSize(ScreenScale(128), ScreenScale(48))
+        cbox:SetSize(ScreenScale(32), ScreenScale(48))
         cbox:SetPos(0, 0)
-        cbox:MoveToBack()
         cbox.Paint = function(self2, w, h)
             local apos, _ = self:GetAttPos(self2.slottbl, false)
             local col1 = col_hi
@@ -166,11 +168,12 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare = vgui.Create("DPanel", cbox)
         csquare.slottbl = i
         csquare:SetSize(ScreenScale(32), ScreenScale(32))
-        csquare:SetPos(ScreenScale(48), 0)
+        csquare:SetPos(0, 0)
         csquare.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
                 if !self:GetSlotBlocked(self2.slottbl) then
                     if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
+                        self.CustomizeSelectAddr = self2.slottbl.Address
                         self:CreateCustomizeBoxes(panel)
                     end
                 end
@@ -178,6 +181,7 @@ function SWEP:CreateCustomizeBoxes(panel)
                 if self:Detach(self2.slottbl.Address) then
                     self:CreateCustomizeBoxes(panel)
                     self:CreateCustomizeSelectMenu(panel)
+                    self.CustomizeSelectAddr = self2.slottbl.Address
                 end
             end
         end
@@ -222,6 +226,7 @@ function SWEP:CreateCustomizeBoxes(panel)
     end
 end
 
+SWEP.CustomizeSelectAddr = nil
 SWEP.CustomizeSelectMenu = nil
 
 function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
@@ -320,10 +325,12 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
         attbtn.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
                 self:Attach(self2.slottbl.Address, self2.att)
-                self:CreateCustomizeBoxes(panel)
+                self.CustomizeSelectAddr = self2.slottbl.Address
+                self:RefreshCustomizeMenu()
             elseif kc == MOUSE_RIGHT then
                 self:Detach(self2.slottbl.Address)
-                self:CreateCustomizeBoxes(panel)
+                self.CustomizeSelectAddr = self2.slottbl.Address
+                self:RefreshCustomizeMenu()
             end
         end
         attbtn.Paint = function(self2, w, h)
@@ -357,7 +364,7 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
             surface.SetTextColor(col2)
             surface.SetTextPos(ScreenScale(13), 0)
             surface.SetFont("STALKERPLUS_12")
-            DrawTextRot(self2, atttbl.PrintName or atttbl.ShortName, ScreenScale(12), 0, ScreenScale(13), 0, ScreenScale(96 - 12), false)
+            DrawTextRot(self2, atttbl.CompactName or atttbl.PrintName or atttbl.ShortName, ScreenScale(12), 0, ScreenScale(13), 0, ScreenScale(96 - 12), false)
         end
     end
 
