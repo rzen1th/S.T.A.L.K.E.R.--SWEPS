@@ -139,7 +139,7 @@ SWEP.HoldType = "ar2"
 SWEP.HoldTypeSprint = "passive"
 SWEP.HoldTypeCustomize = "slam"
 
-SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_AR2
+SWEP.GestureShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_CROSSBOW
 SWEP.GestureReload = ACT_HL2MP_GESTURE_RELOAD_AR2
 
 SWEP.PassiveAng = Angle(0, 0, 0)
@@ -252,7 +252,7 @@ SWEP.Attachments = {
         PrintName = "Optic",
         Category = {"optic_dovetail", "optic_picatinny"},
         Bone = "body",
-        Pos = Vector(0.5, 1, 0),
+        Pos = Vector(0.5, 1, 3),
         Ang = Angle(90, 0, -90),
     }
 }

@@ -1,4 +1,4 @@
-ATT.PrintName = "Kobra"
+ATT.PrintName = "Kobra EKP-8-02 Reflex"
 ATT.CompactName = "KOBRAx1"
 ATT.Icon = Material("entities/stalkerplus_att_optic_kobra.png", "mips smooth")
 ATT.Description = "Red dot sight."

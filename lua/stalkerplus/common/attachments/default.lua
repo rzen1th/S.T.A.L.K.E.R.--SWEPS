@@ -57,7 +57,6 @@ ATT.Attachments = {
     {
         PrintName = "",
         DefaultIcon = Material(""),
-        Default = nil, // only works if installed by default on default
         InstalledElements = "", // single or list of elements to activate when something is installed here
         UnInstalledElements = "",
         Integral = false, // cannot be removed

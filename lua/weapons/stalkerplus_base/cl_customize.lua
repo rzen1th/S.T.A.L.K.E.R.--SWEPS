@@ -353,7 +353,7 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
             surface.SetTextColor(col2)
             surface.SetTextPos(ScreenScale(13), 0)
             surface.SetFont("STALKERPLUS_12")
-            DrawTextRot(self2, atttbl.CompactName or atttbl.PrintName or atttbl.ShortName, ScreenScale(12), 0, ScreenScale(13), 0, ScreenScale(96 - 12), false)
+            DrawTextRot(self2, atttbl.PrintName or atttbl.ShortName, ScreenScale(12), 0, ScreenScale(13), 0, ScreenScale(96 - 12), false)
         end
     end
 
