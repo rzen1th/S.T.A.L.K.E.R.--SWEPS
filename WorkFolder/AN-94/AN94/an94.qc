@@ -46,6 +46,7 @@ $bodygroup "6" {
 }
 
 $cdmaterials "models\weapons\stalker"
+$cdmaterials "models\weapons\stalker\addons\"
 
 $attachment "1" "barrel" 0 0 0 rotate -90 0 0
 $attachment "2" "bolt" 0 0 0 rotate -10 140 180
