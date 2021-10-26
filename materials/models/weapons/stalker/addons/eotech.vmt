@@ -4,9 +4,9 @@ VertexLitGeneric
     $envmap env_cubemap
     $bumpmap "models/weapons/stalker/addons/eotech_bump"
     $envmapsaturation 1
-    $envmaptint "[0.02 0.02 0.02]"
+    $envmaptint "[0.006 0.006 0.006]"
     $phong 1
-    $phongboost 1
+    $phongboost 0.2
     $phongfresnelranges "[0.5 5 35]"
     $phongexponent 20
     $rimlight 0
