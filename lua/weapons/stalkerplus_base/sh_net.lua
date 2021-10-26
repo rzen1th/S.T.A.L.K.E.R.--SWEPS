@@ -60,7 +60,7 @@ function SWEP:ReceiveWeapon()
     end
 
     if SERVER then
-        if !self:ValidateNewTree(tbl) then
+        if !self:ValidateInventoryForNewTree(tbl) then
             return
         end
     end
