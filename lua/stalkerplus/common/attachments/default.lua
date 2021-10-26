@@ -17,7 +17,7 @@ ATT.InvAtt = "" // Having this other attachment will grant access to this one.
 
 ATT.Category = "" // can be "string" or {"list", "of", "strings"}
 
-ATT.ActivateElements = {""}
+ATT.ActivateElements = {"plum_stock"}
 
 ATT.MuzzleDevice = false // set to true if you want to use this to emit particles
 

@@ -251,6 +251,11 @@ SWEP.AttachmentElements = {
         Bodygroups = {
             {5, 1}
         }
+    },
+    ["mag_60"] = {
+        Bodygroups = {
+            {2, 1}
+        }
     }
 }
 
@@ -295,5 +300,12 @@ SWEP.Attachments = {
         Bone = "body",
         Pos = Vector(0, 3, 10.75),
         Ang = Angle(90, 0, -90),
+    },
+    [6] = {
+        PrintName = "MAG",
+        Category = {"mag_ak74_60"},
+        Bone = "body",
+        Pos = Vector(0, 3, 5),
+        Ang = Angle(90, 0, 90),
     },
 }
