@@ -123,10 +123,10 @@ function SWEP:CreateCustomizeBoxes(panel)
         cbox:SetPos(0, 0)
         cbox.Paint = function(self2, w, h)
             local apos, aang = self:GetAttPos(self2.slottbl, false)
-            apos = apos + (aang:Up() * 2) 
+            apos = apos + (aang:Up() * 2)
             local col1 = col_hi
 
-            if self:GetSlotBlocked(self2.slottbl) then
+            if self:GetSlotBlocked(self2.slottbl) and !self2.slottbl.Installed then
                 col1 = Color(255, 100, 100)
             end
 
@@ -140,8 +140,8 @@ function SWEP:CreateCustomizeBoxes(panel)
             sx = sx - (cbox:GetWide() * 0.5)
             sy = sy - (cbox:GetTall() * 0.9)
 
-            sx = math.Clamp(sx, ScreenScale(32), ScrW() - ScreenScale(32))
-            sy = math.Clamp(sy, ScreenScale(32), ScrH() - ScreenScale(64))
+            sx = math.Clamp(sx, 0, ScrW() - ScreenScale(32))
+            sy = math.Clamp(sy, 0, ScrH() - ScreenScale(40))
 
             self2:SetPos(sx, sy)
 
@@ -159,7 +159,7 @@ function SWEP:CreateCustomizeBoxes(panel)
         csquare:SetPos(0, 0)
         csquare.OnMousePressed = function(self2, kc)
             if kc == MOUSE_LEFT then
-                if !self:GetSlotBlocked(self2.slottbl) then
+                if !self:GetSlotBlocked(self2.slottbl) and !self2.slottbl.Installed then
                     if self:CreateCustomizeSelectMenu(panel, self2.slottbl) then
                         self.CustomizeSelectAddr = self2.slottbl.Address
                         self:CreateCustomizeBoxes(panel)
@@ -184,7 +184,7 @@ function SWEP:CreateCustomizeBoxes(panel)
                 col3 = Color(50, 50, 50)
             end
 
-            if self:GetSlotBlocked(self2.slottbl) then
+            if self:GetSlotBlocked(self2.slottbl) and !self2.slottbl.Installed then
                 col1 = Color(50, 0, 0, 150)
                 col2 = Color(255, 100, 100)
                 col3 = Color(200, 0, 0)
@@ -210,11 +210,11 @@ function SWEP:CreateCustomizeBoxes(panel)
             end
 
             surface.SetTextColor(col2)
-            surface.SetFont("STALKERPLUS_8")
+            surface.SetFont("STALKERPLUS_6")
             -- local tw = surface.GetTextSize(txt)
             -- surface.SetTextPos(0, 0)
             -- surface.DrawText(txt)
-            DrawTextRot(self2, txt, 0, ScreenScale(32 - 8 - 1), ScreenScale(2), ScreenScale(32 - 8 - 1), ScreenScale(32))
+            DrawTextRot(self2, txt, 0, ScreenScale(32 - 6 - 1), ScreenScale(2), ScreenScale(32 - 6 - 1), ScreenScale(32))
 
             surface.SetDrawColor(col2)
 
@@ -353,6 +353,14 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
             if self2:IsHovered() and attached then
                 col1 = col_lo
                 col2 = Color(0, 0, 0, 255)
+            end
+
+            local canattach = self:CanAttach(self2.slottbl.Address, self2.att, self2.slottbl.slottbl)
+
+            if !canattach then
+                col1 = Color(50, 0, 0, 150)
+                col2 = Color(255, 100, 100)
+                col3 = Color(200, 0, 0)
             end
 
             surface.SetDrawColor(col1)

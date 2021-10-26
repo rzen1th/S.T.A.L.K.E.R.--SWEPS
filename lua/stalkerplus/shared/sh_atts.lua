@@ -98,6 +98,10 @@ function STALKERPLUS.GetAttsForCats(cats)
     return atts
 end
 
+function STALKERPLUS.GetMaxAtts()
+    return GetConVar("stalkerplus_maxatts"):GetInt()
+end
+
 if CLIENT then
 
 concommand.Add("STALKERPLUS_reloadatts", function()

@@ -251,7 +251,7 @@ SWEP.AttachmentElements = {
 
 SWEP.Attachments = {
     [1] = {
-        PrintName = "DTAIL",
+        PrintName = "DOVETAIL",
         Category = "optic_dovetail",
         Bone = "body",
         Pos = Vector(0.6, 0.75, -0.1),

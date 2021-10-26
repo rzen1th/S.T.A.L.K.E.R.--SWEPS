@@ -100,6 +100,10 @@ function SWEP:GetSlotBlocked(slottbl)
         end
     end
 
+    local totalcount = self:CountAttachments()
+
+    if totalcount >= STALKERPLUS.GetMaxAtts() then return true end
+
     if slottbl.RequireElements then
         for _, group in ipairs(slottbl.RequireElements) do
             if !istable(group) then
@@ -135,6 +139,26 @@ function SWEP:CanAttach(addr, att, slottbl)
 
     local atttbl = STALKERPLUS.GetAttTable(att)
 
+    if atttbl.Max then
+        local count = self:CountAttachments(att)
+
+        if atttbl.InvAtt then
+            count = count + self:CountAttachments(atttbl.InvAtt)
+        end
+
+        if slottbl.Installed then
+            local installed_atttbl = STALKERPLUS.GetAttTable(slottbl.Installed)
+
+            if installed_atttbl.InvAtt == att or att.InvAtt == slottbl.Installed then
+                count = count - 1
+            elseif slottbl.Installed == installed_atttbl.InvAtt then
+                count = count - 1
+            end
+        end
+
+        if count >= atttbl.Max then return false end
+    end
+
     if self:GetAttBlocked(atttbl) then return false end
 
     local attcat = atttbl.Category
@@ -158,4 +182,21 @@ function SWEP:CanDetach(addr)
     if slottbl and slottbl.Integral then return false end
 
     return true
+end
+
+function SWEP:CountAttachments(countatt)
+    local qty = 0
+
+    for _, att in ipairs(self:GetAttachmentList()) do
+        if !countatt then
+            qty = qty + 1
+        else
+            local atttbl = STALKERPLUS.GetAttTable(att)
+            if countatt == att or countatt == atttbl.InvAtt then
+                qty = qty + 1
+            end
+        end
+    end
+
+    return qty
 end

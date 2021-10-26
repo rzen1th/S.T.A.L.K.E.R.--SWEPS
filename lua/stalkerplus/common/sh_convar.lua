@@ -6,6 +6,10 @@ local conVars = {
         default = "0",
     },
     {
+        name = "maxatts",
+        default = "100",
+    },
+    {
         name = "autosave",
         default = "0",
         client = true
