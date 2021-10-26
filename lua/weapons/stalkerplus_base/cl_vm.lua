@@ -108,7 +108,7 @@ function SWEP:GetViewModelPosition(pos, ang)
         extra_offsetpos = LerpVector(1 - curvedcustomizedelta, extra_offsetpos, Vector(0, 0, 0))
     end
 
-    if IsFirstTimePredicted() then
+    if game.SinglePlayer() or IsFirstTimePredicted() then
         self.ViewModelPos = LerpVector(0.8, offsetpos, self.ViewModelPos)
         self.ViewModelAng = LerpAngle(0.8, offsetang, self.ViewModelAng)
     end
