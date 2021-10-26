@@ -1,19 +1,5 @@
 VertexLitGeneric
 {
     $basetexture "models/weapons/stalker/addons/glass_2"
-    $envmap env_cubemap
-    $normalmapalphaenvmapmask 1
     $translucent 1
-    //$envmapsaturation 2
-    $envmaptint "[0.05 0.01 0.035]"
-    $envmapsaturation "0.600000"
-
-    $phong 1
-    $phongboost 1
-    $phongfresnelranges "[.3 8 23]"
-    $phongexponent 21
-
-    $rimlight 1
-    $rimlightexponent 22
-    $rimlightboost "0.120000"
 }

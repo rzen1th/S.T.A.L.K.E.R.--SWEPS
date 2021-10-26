@@ -13,6 +13,8 @@ function SWEP:GetViewModelPosition(pos, ang)
 
     local oldang = Angle(0, 0, 0)
 
+    local up, forward, right = oldang:Up(), oldang:Forward(), oldang:Right()
+
     oldang:Set(ang)
 
     local offsetpos = Vector(0, 0, 0)
@@ -97,9 +99,8 @@ function SWEP:GetViewModelPosition(pos, ang)
         extra_offsetpos = LerpVector(curvedcustomizedelta, extra_offsetpos, Vector(0, 0, 0))
         extra_offsetang = LerpAngle(curvedcustomizedelta, extra_offsetang, Angle(0, 0, 0))
 
-        offsetang = offsetang + (self.MenuRotation * curvedcustomizedelta)
-        offsetang:Normalize()
-        extra_offsetang:Normalize()
+        extra_offsetang = extra_offsetang + self.MenuRotation
+
         extra_offsetpos = extra_offsetpos + (Vector(-24, 0, 0) * (math.cos(math.rad(self.MenuRotation.p)) - 1) / -2)
         extra_offsetpos = extra_offsetpos + (Vector(0, -14, 0) * (math.sin(math.rad(self.MenuRotation.p)) - 1) / -2)
         extra_offsetpos = extra_offsetpos + (Vector(0, 0, -24) * (math.cos(math.rad(self.MenuRotation.y)) - 1) / -2)

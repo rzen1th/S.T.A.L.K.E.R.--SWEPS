@@ -136,6 +136,9 @@ function SWEP:CreateCustomizeBoxes(panel)
             sx = sx - (cbox:GetWide() * 0.5)
             sy = sy - (cbox:GetTall() * 0.9)
 
+            sx = math.Clamp(sx, ScreenScale(32), ScrW() - ScreenScale(32))
+            sy = math.Clamp(sy, ScreenScale(32), ScrH() - ScreenScale(64))
+
             self2:SetPos(sx, sy)
 
             surface.SetDrawColor(col1)
@@ -361,7 +364,8 @@ function SWEP:CreateCustomizeSelectMenu(panel, slottbl)
     self.CustomizeSelectMenu = bg
 end
 
-SWEP.MenuRotation = Angle(0, 0, 0)
+SWEP.MenuRotationY = 0
+SWEP.MenuRotationP = 0
 SWEP.MenuRotating = false
 SWEP.LastMouseX = 0
 SWEP.LastMouseY = 0
@@ -422,8 +426,8 @@ function SWEP:CreateCustomizeHUD()
             local dx = mousex - self.LastMouseX
             local dy = mousey - self.LastMouseY
 
-            dx = dx * 250 / ScrW()
-            dy = dy * 250 / ScrW()
+            dx = dx * 200 / ScrW()
+            dy = dy * 200 / ScrW()
 
             self.MenuRotation = self.MenuRotation + Angle(dx, dy, 0)
             self.MenuRotation:Normalize()

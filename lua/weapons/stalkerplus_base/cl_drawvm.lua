@@ -62,7 +62,7 @@ function SWEP:DrawCustomModel(wm)
         model:SetRenderOrigin(apos)
         model:SetRenderAngles(aang)
 
-        if model.atttbl.HoloSight then
+        if !wm and model.atttbl.HoloSight then
             self:DoHolosight(model, model.atttbl)
         end
 

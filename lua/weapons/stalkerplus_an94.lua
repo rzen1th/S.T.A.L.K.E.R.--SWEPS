@@ -60,7 +60,7 @@ SWEP.Firemodes = {
 }
 
 SWEP.PostBurstDelay = 0.1
-SWEP.RPMMultFirstShot = 2
+SWEP.RPMMultFirstShot = 3
 SWEP.RPM = 600
 
 // Spread
