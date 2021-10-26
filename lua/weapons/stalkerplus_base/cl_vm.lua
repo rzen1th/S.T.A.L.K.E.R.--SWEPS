@@ -42,8 +42,8 @@ function SWEP:GetViewModelPosition(pos, ang)
         offsetang = LerpAngle(sightdelta, offsetang, sightang)
     end
 
-    -- local eepos, eeang = self:GetExtraSightPosition()
-    local eepos, eeang = Vector(0, 0, 0), Angle(0, 0, 0)
+    local eepos, eeang = self:GetExtraSightPositions()
+    -- local eepos, eeang = Vector(0, 0, 0), Angle(0, 0, 0)
 
     local im = self:GetProcessedValue("SightMidPoint")
 

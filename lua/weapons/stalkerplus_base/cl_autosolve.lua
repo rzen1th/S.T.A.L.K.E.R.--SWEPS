@@ -63,8 +63,9 @@ function SWEP:GenerateAutoSight(sight, slottbl)
 
     return {
         Pos = s_pos,
-        Ang = s_ang,
-        Magnification = sight.Magnification or 1
+        Ang = Angle(0, 0, 0),
+        Magnification = sight.Magnification or 1,
+        -- ExtraAng = ang
     }
 end
 
@@ -80,6 +81,11 @@ end
 function SWEP:GetSightPositions()
     local s = self:GetSight()
     return s.Pos, s.Ang
+end
+
+function SWEP:GetExtraSightPositions()
+    local s = self:GetSight()
+    return s.ExtraPos or Vector(0, 0, 0), s.ExtraAng or Angle(0, 0, 0)
 end
 
 function SWEP:SwitchMultiSight()

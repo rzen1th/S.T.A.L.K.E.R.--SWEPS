@@ -121,7 +121,8 @@ function SWEP:CreateCustomizeBoxes(panel)
         cbox:SetSize(ScreenScale(32), ScreenScale(48))
         cbox:SetPos(0, 0)
         cbox.Paint = function(self2, w, h)
-            local apos, _ = self:GetAttPos(self2.slottbl, false)
+            local apos, aang = self:GetAttPos(self2.slottbl, false)
+            apos = apos + (aang:Up() * 2) 
             local col1 = col_hi
 
             if self:GetSlotBlocked(self2.slottbl) then
