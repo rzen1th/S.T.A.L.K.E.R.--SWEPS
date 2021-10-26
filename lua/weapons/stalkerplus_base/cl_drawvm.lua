@@ -66,6 +66,10 @@ function SWEP:DrawCustomModel(wm)
             self:DoHolosight(model, model.atttbl)
         end
 
+        if !wm and model.atttbl.RTScope then
+            self:DoRTScope(model, model.atttbl)
+        end
+
         if !model.NoDraw then
             model:DrawModel()
         end

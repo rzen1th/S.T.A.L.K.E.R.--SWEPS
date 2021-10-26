@@ -48,9 +48,7 @@ ATT.RTScope = true
 ATT.RTScopeSubmatIndex = 1
 ATT.RTScopeFOV = 2.5
 ATT.RTScopeRes = 512
-ATT.RTScopeLensMat = Material("")
 ATT.RTScopeSurface = Material("effects/stalkerplus_rt")
-ATT.RTScopeOffset = Vector(0, 0, 0)
 ATT.RTScopeReticle = Material("")
 
 ATT.Attachments = {

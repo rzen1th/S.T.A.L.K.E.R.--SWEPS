@@ -17,6 +17,7 @@ function SWEP:BuildMultiSight()
         if atttbl.Sights then
             for _, sight in pairs(atttbl.Sights) do
                 local s = self:GenerateAutoSight(sight, slottbl)
+                s.atttbl = atttbl
                 table.insert(self.MultiSightTable, s)
             end
 
