@@ -1,6 +1,6 @@
 ATT.PrintName = "Saiga 545 10-Round"
 ATT.CompactName = "10RD."
-ATT.Icon = Material("entities/stalkerplus_att_optic_sureshot.png", "mips smooth")
+ATT.Icon = Material("entities/stalkerplus_att_mag_10.png", "mips smooth")
 ATT.Description = "10 round compact magazine."
 ATT.SortOrder = 59
 
