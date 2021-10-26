@@ -261,6 +261,26 @@ SWEP.AttachmentElements = {
         Bodygroups = {
             {2, 2}
         }
+    },
+	["stock_skeleton"] = {
+        Bodygroups = {
+            {4, 2}
+        }
+    },
+	["stock_green"] = {
+        Bodygroups = {
+            {4, 4}
+        }
+    },
+	["stock_plum"] = {
+        Bodygroups = {
+            {4, 6}
+        }
+    },
+	["stock_wood"] = {
+        Bodygroups = {
+            {4, 8}
+        }
     }
 }
 
@@ -311,6 +331,13 @@ SWEP.Attachments = {
         Category = {"mag_ak74_10", "mag_ak74_60"},
         Bone = "body",
         Pos = Vector(0, 3, 5),
+        Ang = Angle(90, 0, 90),
+    },
+    [7] = {
+        PrintName = "STOCK",
+        Category = {"stock_ak74_skeleton", "stock_ak74_green", "stock_ak74_plum", "stock_ak74_wood"},
+        Bone = "body",
+        Pos = Vector(0, -2, -2),
         Ang = Angle(90, 0, 90),
     },
 }
