@@ -18,6 +18,6 @@ ATT.Sights = {
 }
 
 ATT.HoloSight = true
-ATT.HoloSightReticle = Material("stalkerplus/kobra.png", "additive")
+ATT.HoloSightReticle = Material("stalkerplus/eotech.png", "additive")
 ATT.HoloSightSize = 512
 ATT.HoloSightColor = Color(255, 0, 0)

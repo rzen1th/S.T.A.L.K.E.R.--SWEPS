@@ -133,8 +133,8 @@ function SWEP:CreateCustomizeBoxes(panel)
             local sx = screenpos.x
             local sy = screenpos.y
 
-            sx = sx - (cbox:GetWide() * 0.5) + ScreenScale(8)
-            sy = sy - (cbox:GetTall() * 0.9) - ScreenScale(20)
+            sx = sx - (cbox:GetWide() * 0.5)
+            sy = sy - (cbox:GetTall() * 0.9)
 
             self2:SetPos(sx, sy)
 

@@ -12,7 +12,7 @@ ATT.Attachments = {
     {
         PrintName = "Optic",
         Category = "optic_picatinny", // single or {"list", "of", "values"}
-        Pos = Vector(-0.78482, 0.620815, -1.90187),
+        Pos = Vector(-0.78482, 0.620815, -1.80187),
         Ang = Angle(0, 0, 0),
     }
 }
