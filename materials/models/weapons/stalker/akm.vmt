@@ -1,8 +1,8 @@
 VertexLitGeneric
 {
-    $baseTexture "models/weapons/stalker/aks74_1"
+    $baseTexture "models/weapons/stalker/akm"
     $envmap env_cubemap
-    $bumpmap "models/weapons/stalker/aks74_1_bump"
+    $bumpmap "models/weapons/stalker/akm_bump"
     $normalmapalphaenvmapmask 1
     $envmapsaturation "0.350000"
     $envmaptint "[0.02 0.02 0.02]"
