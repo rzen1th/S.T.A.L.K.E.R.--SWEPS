@@ -390,6 +390,7 @@ SWEP.Attachments = nil
 --         Pos = Vector(0, 0, 0),
 --         Ang = Angle(0, 0, 0),
 --         KeepBaseIrons = false,
+--         ExtraSightDistance = 0,
 --         Installed = nil,
 --         MergeSlots = {},
 --         SubAttachments = {

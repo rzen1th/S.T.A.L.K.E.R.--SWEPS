@@ -267,6 +267,16 @@ function STALKERPLUS:ProgressPhysBullet(bullet, timestep)
             end
         else
             -- bullet did not impact anything
+            -- break glass in the way
+            -- attacker:FireBullets({
+            --     Src = oldpos,
+            --     Dir = dir,
+            --     Distance = spd,
+            --     Tracer = 0,
+            --     Damage = 0,
+            --     IgnoreEntity = bullet.Attacker
+            -- })
+
             bullet.Pos = tr.HitPos
             bullet.Vel = newvel
             bullet.Travelled = bullet.Travelled + spd

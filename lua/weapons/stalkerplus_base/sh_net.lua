@@ -73,6 +73,7 @@ function SWEP:ReceiveWeapon()
         self:RefreshCustomizeMenu()
     else
         self:SendWeapon()
+        self:InvalidateCache()
     end
 end
 
